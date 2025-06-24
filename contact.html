@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Goblin Games - Visit our store, get in touch, or find us online. We're here to help with all your trading card game needs.">
+    <meta name="keywords" content="contact goblin games, tcg store location, trading card shop hours, customer service">
+    <title>Contact Us - Goblin Games | Get in Touch</title>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Goblin Games",
+        "image": "https://goblingames.com/images/store-front.jpg",
+        "@id": "https://goblingames.com",
+        "url": "https://goblingames.com",
+        "telephone": "+1-555-GOBLIN-1",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Mystical Lane",
+            "addressLocality": "Enchanted City",
+            "addressRegion": "Fantasy State",
+            "postalCode": "12345",
+            "addressCountry": "US"
+        },
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "10:00",
+            "closes": "20:00"
+        }, {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Saturday",
+            "opens": "09:00",
+            "closes": "22:00"
+        }, {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "11:00",
+            "closes": "18:00"
+        }]
+    }
+    </script>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --goblin-green: #2d5016;
+            --goblin-gold: #d4af37;
+            --goblin-brown: #8b4513;
+            --forest-green: #228b22;
+            --earth-brown: #8b7355;
+            --parchment: #f4f1e8;
+            --shadow-dark: rgba(0, 0, 0, 0.3);
+            --text-primary: #2c3e50;
+            --text-secondary: #5d6d7e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: linear-gradient(135deg, var(--parchment) 0%, #e8dcc0 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--goblin-green);
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--goblin-gold);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-menu a {
+            color: var(--parchment);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a[aria-current="page"] {
+            color: var(--goblin-gold);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--parchment);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--goblin-green);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--goblin-gold);
+        }
+
+        .contact-info h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--goblin-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--parchment);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .info-item:hover {
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .info-details h3 {
+            color: var(--goblin-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .info-details p {
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Store Hours */
+        .hours-grid {
+            margin-top: 2rem;
+        }
+
+        .hours-title {
+            font-family: 'Cinzel', serif;
+            color: var(--goblin-green);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            background: var(--parchment);
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid var(--goblin-gold);
+        }
+
+        .day {
+            font-weight: 600;
+            color: var(--goblin-green);
+        }
+
+        .time {
+            color: var(--text-secondary);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--forest-green);
+        }
+
+        .contact-form h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--goblin-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--goblin-green);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            background: var(--parchment);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--goblin-gold);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--goblin-green), var(--forest-green));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Map Section */
+        .map-section {
+            margin-top: 4rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid var(--earth-brown);
+        }
+
+        .map-section h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--goblin-green);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 1.8rem;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--forest-green), var(--goblin-green));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            border: 3px solid var(--goblin-gold);
+        }
+
+        /* Social Media */
+        .social-section {
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .social-title {
+            font-family: 'Cinzel', serif;
+            color: var(--goblin-green);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--goblin-gold), #f4d03f);
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: var(--goblin-green);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-info, .contact-form {
+                padding: 1.5rem;
+            }
+
+            .map-section {
+                padding: 1.5rem;
+            }
+
+            .map-placeholder {
+                height: 250px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-info, .contact-form, .map-section {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .contact-form {
+            animation-delay: 0.2s;
+        }
+
+        .map-section {
+            animation-delay: 0.4s;
+        }
+
+        /* Success/Error States */
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .form-message.show {
+            display: block;
+            animation: fadeInUp 0.3s ease;
+        }
+    </style>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header" role="banner">
+        <nav class="nav-container" role="navigation" aria-label="Main navigation">
+            <div class="logo-container">
+                <a href="index.html" class="logo-link" aria-label="Goblin Games Homepage">
+                    <img src="images/goblin-logo.svg" alt="Goblin Games Logo" class="logo" width="50" height="50">
+                    <span class="logo-text">Goblin Games</span>
+                </a>
+            </div>
+            
+            <button class="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span>☰</span>
+            </button>
+            
+            <ul class="nav-menu" role="menubar">
+                <li role="none"><a href="index.html" role="menuitem">Home</a></li>
+                <li role="none"><a href="products.html" role="menuitem">Products</a></li>
+                <li role="none"><a href="about.html" role="menuitem">About</a></li>
+                <li role="none"><a href="blog.html" role="menuitem">News</a></li>
+                <li role="none"><a href="contact.html" role="menuitem" aria-current="page">Contact</a></li>
+                <li role="none">
+                    <a href="cart.html" class="cart-link" role="menuitem" aria-label="Shopping cart">
+                        <span class="cart-icon">🛒</span>
+                        <span class="cart-counter" aria-live="polite">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main role="main">
+        <div class="container">
+            <h1 class="page-title">Get in Touch</h1>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
+                We'd love to hear from you! Reach out with questions, feedback, or just to say hello.
+            </p>
+
+            <div class="contact-container">
+                <!-- Contact Information -->
+                <div class="contact-info">
+                    <h2>Visit Our Goblin Lair</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon">📍</div>
+                        <div class="info-details">
+                            <h3>Store Location</h3>
+                            <p>123 Mystical Lane<br>Enchanted City, Fantasy State 12345</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">📞</div>
+                        <div class="info-details">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+1-555-462-5461" style="color: inherit; text-decoration: none;">+1 (555) GOBLIN-1</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">✉️</div>
+                        <div class="info-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:hello@goblingames.com" style="color: inherit; text-decoration: none;">hello@goblingames.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="info-icon">🌐</div>
+                        <div class="info-details">
+                            <h3>Support</h3>
+                            <p><a href="mailto:support@goblingames.com" style="color: inherit; text-decoration: none;">support@goblingames.com</a></p>
+                        </div>
+                    </div>
+
+                    <div class="hours-grid">
+                        <h3 class="hours-title">Store Hours</h3>
+                        
+                        <div class="hours-item">
+                            <span class="day">Monday - Friday</span>
+                            <span class="time">10:00 AM - 8:00 PM</span>
+                        </div>
+                        
+                        <div class="hours-item">
+                            <span class="day">Saturday</span>
+                            <span class="time">9:00 AM - 10:00 PM</span>
+                        </div>
+                        
+                        <div class="hours-item">
+                            <span class="day">Sunday</span>
+                            <span class="time">11:00 AM - 6:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    
+                    <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+                    
+                    <form id="contactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">First Name *</label>
+                                <input type="text" id="firstName" name="firstName" class="form-control" required aria-describedby="firstNameError">
+                                <div class="error-message" id="firstNameError" role="alert"></div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="lastName">Last Name *</label>
+                                <input type="text" id="lastName" name="lastName" class="form-control" required aria-describedby="lastNameError">
+                                <div class="error-message" id="lastNameError" role="alert"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-control" required aria-describedby="emailError">
+                            <div class="error-message" id="emailError" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" aria-describedby="phoneError">
+                            <div class="error-message" id="phoneError" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" class="form-control" required aria-describedby="subjectError">
+                                <option value="">Please select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="product">Product Question</option>
+                                <option value="order">Order Support</option>
+                                <option value="tournament">Tournament Information</option>
+                                <option value="partnership">Partnership Opportunity</option>
+                                <option value="feedback">Feedback</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <div class="error-message" id="subjectError" role="alert"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" class="form-control" rows="5" placeholder="Tell us what's on your mind..." required aria-describedby="messageError"></textarea>
+                            <div class="error-message" id="messageError" role="alert"></div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Send Message 🧙‍♂️</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Map Section -->
+            <div class="map-section">
+                <h2>Find Our Magical Location</h2>
+                <div class="map-placeholder">
+                    <div>
+                        <p>🗺️ Interactive Map Coming Soon!</p>
+                        <p>For now, you can find us at:<br>
+                        123 Mystical Lane, Enchanted City, Fantasy State 12345</p>
+                        <p><small>We're located in the heart of the Fantasy District,<br>
+                        next to the Enchanted Bookstore and across from Dragon's Brew Coffee.</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media Section -->
+            <div class="social-section">
+                <h2 class="social-title">Connect With Us Online</h2>
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="Follow us on Facebook">📘</a>
+                    <a href="#" class="social-link" aria-label="Follow us on Twitter">🐦</a>
+                    <a href="#" class="social-link" aria-label="Follow us on Instagram">📷</a>
+                    <a href="#" class="social-link" aria-label="Subscribe to our YouTube channel">📺</a>
+                    <a href="#" class="social-link" aria-label="Join our Discord server">🎮</a>
+                    <a href="#" class="social-link" aria-label="Follow us on TikTok">🎵</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript for Form Validation and Interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            // Form validation
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value.trim();
+
+                let isValid = true;
+
+                // Clear previous errors
+                clearErrors();
+
+                // Validate firstName
+                if (!firstName) {
+                    showError('firstNameError', 'First name is required');
+                    isValid = false;
+                }
+
+                // Validate lastName
+                if (!lastName) {
+                    showError('lastNameError', 'Last name is required');
+                    isValid = false;
+                }
+
+                // Validate email
+                if (!email) {
+                    showError('emailError', 'Email is required');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('emailError', 'Please enter a valid email address');
+                    isValid = false;
+                }
+
+                // Validate subject
+                if (!subject) {
+                    showError('subjectError', 'Please select a subject');
+                    isValid = false;
+                }
+
+                // Validate message
+                if (!message) {
+                    showError('messageError', 'Message is required');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showError('messageError', 'Message must be at least 10 characters long');
+                    isValid = false;
+                }
+
+                if (isValid) {
+                    // Simulate form submission
+                    showFormMessage('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
+                    form.reset();
+                } else {
+                    showFormMessage('Please correct the errors above and try again.', 'error');
+                }
+            });
+
+            function showError(elementId, message) {
+                const errorElement = document.getElementById(elementId);
+                errorElement.textContent = message;
+                errorElement.style.color = '#721c24';
+                errorElement.style.fontSize = '0.875rem';
+                errorElement.style.marginTop = '0.25rem';
+            }
+
+            function clearErrors() {
+                const errorElements = document.querySelectorAll('.error-message');
+                errorElements.forEach(element => {
+                    element.textContent = '';
+                });
+            }
+
+            function showFormMessage(message, type) {
+                formMessage.textContent = message;
+                formMessage.className = `form-message ${type} show`;
+                
+                setTimeout(() => {
+                    formMessage.classList.remove('show');
+                }, 5000);
+            }
+
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Real-time validation feedback
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        const errorId = this.id + 'Error';
+                        showError(errorId, `${this.previousElementSibling.textContent.replace(' *', '')} is required`);
+                    }
+                });
+
+                input.addEventListener('input', function() {
+                    const errorId = this.id + 'Error';
+                    const errorElement = document.getElementById(errorId);
+                    if (errorElement && errorElement.textContent) {
+                        errorElement.textContent = '';
+                    }
+                });
+            });
+
+            // Mobile menu toggle
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (menuToggle && navMenu) {
+                menuToggle.addEventListener('click', function() {
+                    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+                    this.setAttribute('aria-expanded', navMenu.style.display === 'flex' ? 'true' : 'false');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
