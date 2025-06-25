@@ -43,13 +43,14 @@
 
 body {
   font-family: 'Cinzel', 'Griffy', serif;
-  line-height: 1.7;
+  line-height: 1.8;
   color: var(--text-primary);
   min-height: 100vh;
   font-size: 1.15rem;
   overflow-x: hidden;
   background: var(--shop-background);
   letter-spacing: 0.01em;
+  padding-bottom: 2rem;
 }
 
 @keyframes subtle-flicker {
@@ -60,7 +61,7 @@ body {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
 }
 
 /* Typography */
@@ -70,7 +71,9 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   text-shadow: 1px 2px 8px rgba(60, 60, 60, 0.08);
   letter-spacing: 0.03em;
+  margin-top: 2.5rem;
   margin-bottom: 1.5rem;
+  line-height: 1.2;
 }
 
 h1 { font-size: 3.8rem; }
@@ -87,14 +90,14 @@ p {
 }
 
 /* Buttons */
-.btn {
+.btn, .btn-primary, .btn-secondary, .newsletter-btn {
   display: inline-block;
   padding: 1.2rem 2.5rem;
   border-radius: var(--border-radius);
   text-decoration: none;
   font-weight: 600;
   font-size: 1.1rem;
-  transition: var(--transition);
+  transition: var(--transition), box-shadow 0.2s;
   border: 3px solid transparent;
   cursor: pointer;
   text-align: center;
@@ -103,6 +106,8 @@ p {
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.10);
+  outline: none;
 }
 
 .btn::before {
@@ -244,15 +249,15 @@ p {
   border-radius: var(--border-radius);
   box-shadow: 0 6px 24px rgba(60,60,60,0.10);
   border: 2px solid var(--mana-gold);
-  transition: var(--transition);
+  transition: var(--transition), box-shadow 0.2s;
   overflow: hidden;
+  outline: none;
 }
 
 .product-card:hover,
 .collection-card:hover {
-  box-shadow: 0 12px 32px rgba(60,60,60,0.18);
-  border-color: var(--mana-blue);
-  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 16px 40px rgba(60,60,60,0.18), 0 0 0 3px var(--mana-gold);
+  transform: translateY(-8px) scale(1.04);
 }
 
 .product-image,
@@ -690,16 +695,15 @@ p {
 }
 
 /* Utility Classes */
-.visually-hidden {
+.visually-hidden, .sr-only {
   position: absolute !important;
-  overflow: hidden;
   width: 1px;
   height: 1px;
-  margin: -1px;
   padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
   border: 0;
-  clip: rect(0 0 0 0);
-  word-wrap: normal !important;
 }
 
 .focus-none {
@@ -844,4 +848,167 @@ p {
   h1 { font-size: 2.2rem; }
   .section-title { font-size: 1.5rem; }
   .hero-section, .featured-products, .featured-collections, .about-preview { padding: 1.2rem 0.5rem; }
+}
+
+/* --- PHASE 1: MODERN UX/UI & ACCESSIBILITY ENHANCEMENTS --- */
+
+section, .section-title, .about-content, .products-grid, .collections-grid {
+  margin-bottom: 3.5rem;
+}
+
+.btn:focus, .btn-primary:focus, .btn-secondary:focus, .newsletter-btn:focus {
+  outline: 3px solid var(--mana-blue);
+  outline-offset: 2px;
+}
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: 0 1px 4px rgba(60,60,60,0.15);
+}
+
+.product-card:focus-within, .collection-card:focus-within {
+  box-shadow: 0 0 0 3px var(--mana-blue), 0 12px 32px rgba(60,60,60,0.18);
+}
+
+input, textarea, select {
+  border-radius: 8px;
+  border: 2px solid #e0e0e0;
+  padding: 1rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: var(--mana-blue);
+  outline: none;
+}
+
+/* Sticky Navigation */
+.header, .hut-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(60,60,60,0.10);
+}
+
+/* Prepare for search bar */
+.nav-container, .hut-nav-system {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+.search-bar {
+  flex: 1 1 300px;
+  max-width: 400px;
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+}
+.search-input {
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px 0 0 8px;
+  border: 2px solid var(--mana-blue);
+  font-size: 1.1rem;
+}
+.search-btn {
+  background: var(--mana-blue);
+  color: #fff;
+  border: none;
+  border-radius: 0 8px 8px 0;
+  padding: 0.8rem 1.5rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.search-btn:hover, .search-btn:focus {
+  background: var(--mana-gold);
+  color: var(--mana-blue);
+}
+
+/* Card hover microinteractions */
+.product-card:hover, .collection-card:hover {
+  box-shadow: 0 16px 40px rgba(60,60,60,0.18), 0 0 0 3px var(--mana-gold);
+  transform: translateY(-8px) scale(1.04);
+}
+
+/* Form feedback microinteraction */
+input:invalid, textarea:invalid {
+  border-color: var(--mana-red);
+}
+input:valid, textarea:valid {
+  border-color: var(--mana-green);
+}
+
+.card-of-day-section {
+  margin-bottom: 3.5rem;
+}
+.card-of-day {
+  margin: 0 auto;
+  max-width: 340px;
+  background: #fffbe6;
+  border: 3px solid var(--mana-blue);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,110,165,0.12);
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  position: relative;
+}
+.card-of-day .card-header {
+  display: flex;
+  gap: 0.3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.card-of-day .mana-icon {
+  font-size: 1.3rem;
+  background: #eaf6ff;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  margin-left: 0.1rem;
+  color: #3a6ea5;
+  border: 1.5px solid #3a6ea5;
+}
+.card-of-day .card-art img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.card-of-day .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.card-of-day .card-type {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.7rem;
+}
+.card-of-day .card-text {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+.card-of-day .card-flavor {
+  font-style: italic;
+  color: var(--mana-blue);
+  font-size: 0.98rem;
+}
+.mute-toggle {
+  background: var(--mana-blue);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin: 1rem 0 0 0;
+  transition: var(--transition);
+}
+.mute-toggle[aria-pressed="true"] {
+  background: var(--mana-gold);
+  color: var(--mana-blue);
 }

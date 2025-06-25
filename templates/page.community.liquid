@@ -1,0 +1,228 @@
+<!-- Community Page for Goblin Games -->
+<!--
+<meta name="description" content="Goblin Games Community: Earn XP, collect badges, join events, and share your Magic story!">
+<meta property="og:title" content="Goblin Games - Community & Events">
+<meta property="og:description" content="Join the Goblin Games community: XP leaderboard, badges, gallery, events, and testimonials.">
+<meta property="og:image" content="/assets/og-image.jpg">
+-->
+<div class="community-page">
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">Join the Community</h1>
+      <p class="hero-subtitle">At {{ shop.name }}, every player is a legend. Earn points, collect badges, share your story, and join the adventure!</p>
+    </div>
+  </section>
+
+  <!-- Loyalty Program / XP Leaderboard -->
+  <section class="about-preview">
+    <div class="container">
+      <h2 class="section-title">Planeswalker Points</h2>
+      <p>Earn XP for every purchase, event, and community contribution. Climb the leaderboard and unlock exclusive rewards!</p>
+      <table class="xp-leaderboard">
+        <thead>
+          <tr><th>Rank</th><th>Player</th><th>XP</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Justin</td><td>2,350</td></tr>
+          <tr><td>2</td><td>Samara</td><td>1,980</td></tr>
+          <tr><td>3</td><td>Alex</td><td>1,750</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Badges & Achievements -->
+  <section class="about-preview">
+    <div class="container">
+      <h2 class="section-title">Badges & Achievements</h2>
+      <div class="badges-row">
+        <div class="badge-card">
+          <span class="badge-icon">🏆</span>
+          <div class="badge-title">First Purchase</div>
+          <div class="badge-desc">Awarded for making your first purchase.</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">🎲</span>
+          <div class="badge-title">Event Champion</div>
+          <div class="badge-desc">Win any in-store event.</div>
+        </div>
+        <div class="badge-card">
+          <span class="badge-icon">🧙‍♂️</span>
+          <div class="badge-title">Planeswalker</div>
+          <div class="badge-desc">Attend 10 events.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Gallery -->
+  <section class="about-preview">
+    <div class="container">
+      <h2 class="section-title">Community Gallery</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img src="{{ 'gallery1.jpg' | asset_url }}" alt="Friday Night Magic Top 8 group photo at Goblin Games" loading="lazy" />
+          <div class="gallery-caption">Friday Night Magic – Top 8</div>
+        </div>
+        <div class="gallery-item">
+          <img src="{{ 'gallery2.jpg' | asset_url }}" alt="Samara's Mono-Red Burn Decklist" loading="lazy" />
+          <div class="gallery-caption">Samara's Mono-Red Burn Deck</div>
+        </div>
+        <div class="gallery-item">
+          <img src="{{ 'gallery3.jpg' | asset_url }}" alt="Planeswalker Cosplay Night at Goblin Games" loading="lazy" />
+          <div class="gallery-caption">Planeswalker Cosplay Night</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Event Calendar -->
+  <section class="about-preview">
+    <div class="container">
+      <h2 class="section-title">Event Calendar</h2>
+      <table class="event-calendar">
+        <thead>
+          <tr><th>Date</th><th>Event</th><th>Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Fri, July 12</td><td>Friday Night Magic</td><td>Standard, 7pm, $10 entry</td></tr>
+          <tr><td>Sat, July 20</td><td>Commander League</td><td>Casual, 1pm, Free</td></tr>
+          <tr><td>Sun, July 28</td><td>Modern Prerelease</td><td>Sealed, 12pm, $30 entry</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- User Reviews / Testimonials -->
+  <section class="about-preview">
+    <div class="container">
+      <h2 class="section-title">Player Testimonials</h2>
+      <div class="testimonial-cards">
+        <div class="magic-card-frame">
+          <div class="card-title">"Best shop in town!"</div>
+          <div class="card-type">— Alex, Planeswalker</div>
+          <div class="card-text">"I found my first Black Lotus here. The staff are always friendly and the events are a blast!"</div>
+        </div>
+        <div class="magic-card-frame">
+          <div class="card-title">"A true community hub"</div>
+          <div class="card-type">— Samara, Event Champion</div>
+          <div class="card-text">"I've made lifelong friends and learned so much about Magic. Highly recommend!"</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+.xp-leaderboard, .event-calendar {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: #fffbe6;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(60,60,60,0.08);
+}
+.xp-leaderboard th, .xp-leaderboard td, .event-calendar th, .event-calendar td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #e6c20033;
+  text-align: left;
+}
+.xp-leaderboard th, .event-calendar th {
+  background: var(--mana-gold);
+  color: #232323;
+  font-weight: 700;
+}
+.xp-leaderboard tr:last-child td, .event-calendar tr:last-child td {
+  border-bottom: none;
+}
+.badges-row {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.badge-card {
+  background: #eaf6ff;
+  border: 2px solid var(--mana-blue);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+}
+.badge-icon {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+.badge-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+.badge-desc {
+  font-size: 0.98rem;
+  color: var(--mana-blue);
+}
+.gallery-grid {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.gallery-item {
+  background: #fffbe6;
+  border: 2px solid var(--mana-gold);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(60,60,60,0.08);
+  width: 220px;
+  overflow: hidden;
+  text-align: center;
+}
+.gallery-item img {
+  width: 100%;
+  border-radius: 12px 12px 0 0;
+}
+.gallery-caption {
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  color: var(--mana-blue);
+}
+.testimonial-cards {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.magic-card-frame {
+  background: #fffbe6;
+  border: 3px solid var(--mana-gold);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,60,0.12);
+  width: 320px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  position: relative;
+}
+.magic-card-frame .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.magic-card-frame .card-type {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.7rem;
+}
+.magic-card-frame .card-text {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+</style> 

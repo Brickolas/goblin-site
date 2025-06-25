@@ -222,3 +222,152 @@
         }
     });
 </script>
+
+<!-- Lore/Our Story Page for Goblin Games -->
+<div class="about-lore-page">
+  <section class="hero-section">
+    <div class="container">
+      <h1 class="hero-title">The Legend of {{ shop.name }}</h1>
+      <p class="hero-subtitle">Every shop has a story. Ours is written in mana, shuffled in sleeves, and cast across the tables of our local community.</p>
+    </div>
+  </section>
+
+  <section class="about-preview">
+    <div class="container about-content">
+      <div class="about-text">
+        <h2>Our Origin Story</h2>
+        <p>In the heart of our town, a group of Planeswalkers dreamed of a place where spells could fly, friendships could flourish, and every booster pack held the promise of legend. Thus, {{ shop.name }} was born—a haven for Magic: The Gathering fans, collectors, and adventurers of all kinds.</p>
+        <p>From our first Friday Night Magic to epic prerelease battles, our shop has grown into a vibrant community hub. Here, every player is welcome, every deck has a story, and every game is a new adventure.</p>
+      </div>
+      <div class="about-image">
+        <img src="{{ 'lore-art.jpg' | asset_url }}" alt="Planeswalkers gathered at Goblin Games shop" loading="lazy" style="max-width: 100%; border-radius: 18px; box-shadow: 0 8px 32px rgba(60,60,60,0.12);">
+      </div>
+    </div>
+  </section>
+
+  <section class="staff-cards">
+    <div class="container">
+      <h2 class="section-title">Meet the Guild</h2>
+      <div class="staff-grid">
+        <!-- Example staff card, repeat for each staff member -->
+        <div class="magic-card-frame">
+          <div class="card-header">
+            <span class="mana-icon">{W}</span>
+            <span class="mana-icon">{U}</span>
+            <span class="mana-icon">{B}</span>
+            <span class="mana-icon">{R}</span>
+            <span class="mana-icon">{G}</span>
+          </div>
+          <div class="card-art">
+            <img src="{{ 'staff-justin.jpg' | asset_url }}" alt="Justin the Shopkeeper, Legendary Planeswalker" loading="lazy" />
+          </div>
+          <div class="card-title">Justin, Shopkeeper</div>
+          <div class="card-type">Legendary Creature — Human Planeswalker</div>
+          <div class="card-text">Whenever a new player enters the shop, Justin welcomes them with a smile and a deck of their choice.<br><em>"Every spark is welcome here."</em></div>
+          <div class="card-flavor">"I've seen more topdecks than there are stars in the Multiverse."</div>
+        </div>
+        <!-- Add more staff cards as needed -->
+      </div>
+    </div>
+  </section>
+
+  <section class="mission-values">
+    <div class="container">
+      <h2 class="section-title">Our Mission & Values</h2>
+      <ul class="values-list">
+        <li><strong>Inclusivity:</strong> Every player, every deck, every story is welcome.</li>
+        <li><strong>Community:</strong> We're more than a shop—we're a gathering place for friends and rivals alike.</li>
+        <li><strong>Fun:</strong> Magic is a game, and games are meant to be enjoyed. We celebrate the joy of play.</li>
+        <li><strong>Discovery:</strong> There's always a new card, a new combo, or a new friend to find.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="cta-block">
+    <div class="container">
+      <h2 class="section-title">Join Our Story</h2>
+      <p>Ready to become a legend? Visit us, join an event, or sign up for our newsletter. The next chapter is yours to write!</p>
+      <a href="/" class="btn btn-primary">Return to the Shop</a>
+    </div>
+  </section>
+</div>
+
+<style>
+.about-lore-page .staff-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+.magic-card-frame {
+  background: #fffbe6;
+  border: 3px solid var(--mana-gold);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,60,0.12);
+  width: 320px;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  position: relative;
+}
+.magic-card-frame .card-header {
+  display: flex;
+  gap: 0.3rem;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+.magic-card-frame .mana-icon {
+  font-size: 1.3rem;
+  background: #eee;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  margin-left: 0.1rem;
+  color: #232323;
+  border: 1.5px solid #e6c200;
+}
+.magic-card-frame .card-art img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+.magic-card-frame .card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+.magic-card-frame .card-type {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.7rem;
+}
+.magic-card-frame .card-text {
+  font-size: 1.05rem;
+  margin-bottom: 0.7rem;
+}
+.magic-card-frame .card-flavor {
+  font-style: italic;
+  color: var(--mana-blue);
+  font-size: 0.98rem;
+}
+.values-list {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+.values-list li {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+.values-list li:before {
+  content: '✦';
+  color: var(--mana-gold);
+  position: absolute;
+  left: 0;
+}
+</style>

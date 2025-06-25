@@ -1,5 +1,10 @@
-<!-- Homepage for Goblin Games -->
-<div class="homepage">
+<!--
+<meta name="description" content="Goblin Games: Your local Magic: The Gathering shop. Shop singles, sealed, events, and join our vibrant TCG community!">
+<meta property="og:title" content="Goblin Games - Magic: The Gathering Shop & Community">
+<meta property="og:description" content="Shop Magic cards, join events, and become a legend at Goblin Games.">
+<meta property="og:image" content="/assets/og-image.jpg">
+-->
+<main class="homepage">
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
@@ -14,6 +19,25 @@
     </div>
   </section>
 
+  <!-- Card of the Day Widget -->
+  <section class="about-preview card-of-day-section">
+    <div class="container">
+      <h2 class="section-title">Card of the Day</h2>
+      <div class="magic-card-frame card-of-day">
+        <div class="card-header">
+          <span class="mana-icon">{U}</span><span class="mana-icon">{R}</span>
+        </div>
+        <div class="card-art">
+          <img src="https://cards.scryfall.io/large/front/2/2/22b7e2e2-2e2e-4e2e-8e2e-2e2e2e2e2e2e.jpg" alt="Staticaster Mage Magic card art" loading="lazy" />
+        </div>
+        <div class="card-title">Staticaster Mage</div>
+        <div class="card-type">Creature — Human Wizard</div>
+        <div class="card-text">Flash, Haste<br>When Staticaster Mage enters the battlefield, it deals 1 damage to any target.<br><em>"Lightning is just another tool for a clever mage."</em></div>
+        <div class="card-flavor">Fun Fact: This card is a favorite in Izzet League decks for its surprise factor!</div>
+      </div>
+    </div>
+  </section>
+
   <!-- About/Story Section -->
   <section class="about-preview">
     <div class="container about-content">
@@ -23,7 +47,7 @@
         <p><strong>"There's no wrong way to play Magic – only more ways to have fun!"</strong></p>
       </div>
       <div class="about-image">
-        <img src="{{ 'magic-shop-hero.jpg' | asset_url }}" alt="Inside the game shop" style="max-width: 100%; border-radius: 18px; box-shadow: 0 8px 32px rgba(60,60,60,0.12);">
+        <img src="{{ 'magic-shop-hero.jpg' | asset_url }}" alt="Inside Goblin Games shop with players at tables" loading="lazy" style="max-width: 100%; border-radius: 18px; box-shadow: 0 8px 32px rgba(60,60,60,0.12);">
       </div>
     </div>
   </section>
@@ -128,4 +152,4 @@
       {% endform %}
     </div>
   </section>
-</div>
+</main>

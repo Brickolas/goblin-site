@@ -601,3 +601,49 @@ document.addEventListener('DOMContentLoaded', () => {
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = { GoblinGames, GoblinUtils };
 }
+
+// --- PHASE 4: SOUND EFFECTS ---
+window.GoblinSound = {
+  muted: false,
+  clickSound: new Audio('/assets/click.mp3'),
+  playClick: function() {
+    if (!this.muted) {
+      this.clickSound.currentTime = 0;
+      this.clickSound.play();
+    }
+  },
+  toggleMute: function() {
+    this.muted = !this.muted;
+    document.querySelectorAll('.mute-toggle').forEach(btn => {
+      btn.setAttribute('aria-pressed', this.muted);
+      btn.textContent = this.muted ? 'Unmute Sounds' : 'Mute Sounds';
+    });
+  }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  // Add mute toggle button to header if not present
+  if (!document.querySelector('.mute-toggle')) {
+    const header = document.querySelector('.header, .hut-header');
+    if (header) {
+      const btn = document.createElement('button');
+      btn.className = 'mute-toggle';
+      btn.setAttribute('aria-pressed', 'false');
+      btn.textContent = 'Mute Sounds';
+      btn.onclick = function() { window.GoblinSound.toggleMute(); };
+      header.appendChild(btn);
+    }
+  }
+  // Attach click sound to all .btn
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      window.GoblinSound.playClick();
+    });
+  });
+  // Attach hover sound to all .product-card
+  document.querySelectorAll('.product-card').forEach(card => {
+    card.addEventListener('mouseenter', function() {
+      window.GoblinSound.playClick();
+    });
+  });
+});
