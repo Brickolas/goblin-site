@@ -1,42 +1,45 @@
 <!-- Homepage for Goblin Games -->
 <div class="homepage">
+  <!-- Hero Section -->
   <section class="hero-section">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Welcome to Goblin Games</h1>
-        <p class="hero-subtitle">{{ shop.description | default: "Discover our curated collection of trading cards" }}</p>
+        <h1 class="hero-title">Unleash Your Magic</h1>
+        <p class="hero-subtitle">Welcome to {{ shop.name }} – Your local Planeswalker's destination for Magic: The Gathering cards, events, and community. Discover legendary singles, sealed products, and accessories in a shop built by players, for players.</p>
+        <div class="hero-buttons">
+          <a href="{{ routes.collections_url }}" class="btn btn-primary">Shop Magic Cards</a>
+          <a href="{{ pages.contact.url | default: '/pages/contact' }}" class="btn btn-secondary">Contact & Events</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Products -->
+  <!-- About/Story Section -->
+  <section class="about-preview">
+    <div class="container about-content">
+      <div class="about-text">
+        <h2>About {{ shop.name }}</h2>
+        <p>Founded by passionate Magic players, {{ shop.name }} is more than a store – it's a gathering place for the local TCG community. Whether you're a seasoned planeswalker or just picking up your first deck, our mission is to bring the thrill of Magic to everyone. Join us for weekly events, discover rare finds, and connect with fellow fans in a welcoming, inclusive space.</p>
+        <p><strong>"There's no wrong way to play Magic – only more ways to have fun!"</strong></p>
+      </div>
+      <div class="about-image">
+        <img src="{{ 'magic-shop-hero.jpg' | asset_url }}" alt="Inside the game shop" style="max-width: 100%; border-radius: 18px; box-shadow: 0 8px 32px rgba(60,60,60,0.12);">
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products or Collections -->
   {% if collections.featured.products.size > 0 %}
     <section class="featured-products">
       <div class="container">
-        <h2 class="section-title">Featured Products</h2>
+        <h2 class="section-title">Featured Magic Singles & Sealed</h2>
         <div class="products-grid">
           {% for product in collections.featured.products limit: 8 %}
             <div class="product-card">
               <a href="{{ product.url }}" class="product-image">
-                {% comment %} Use themed placeholder instead of inventory photos {% endcomment %}
                 <div class="product-placeholder">
-                  {% assign product_type = product.type | downcase %}
-                  {% if product_type contains 'magic' or product_type contains 'mtg' %}
-                    <span class="placeholder-icon">🔮</span>
-                  {% elsif product_type contains 'pokemon' or product_type contains 'pkmn' %}
-                    <span class="placeholder-icon">⚡</span>
-                  {% elsif product_type contains 'yugioh' or product_type contains 'yu-gi-oh' %}
-                    <span class="placeholder-icon">🗡️</span>
-                  {% elsif product_type contains 'dice' %}
-                    <span class="placeholder-icon">🎲</span>
-                  {% elsif product_type contains 'board' or product_type contains 'game' %}
-                    <span class="placeholder-icon">🎯</span>
-                  {% elsif product_type contains 'accessory' or product_type contains 'sleeve' %}
-                    <span class="placeholder-icon">🛡️</span>
-                  {% else %}
-                    <span class="placeholder-icon">🃏</span>
-                  {% endif %}
-                  <span class="placeholder-text">{{ product.type | default: 'Trading Cards' }}</span>
+                  <span class="placeholder-icon">🔮</span>
+                  <span class="placeholder-text">{{ product.type | default: 'Magic Card' }}</span>
                 </div>
               </a>
               <div class="product-content">
@@ -64,7 +67,6 @@
       </div>
     </section>
   {% else %}
-    <!-- Show collections if no featured products -->
     {% if collections.size > 0 %}
       <section class="featured-collections">
         <div class="container">
@@ -73,30 +75,35 @@
             {% for collection in collections limit: 6 %}
               <div class="collection-card">
                 <a href="{{ collection.url }}" class="collection-image">
-                  {% comment %} Use themed placeholder for collections {% endcomment %}
                   <div class="collection-placeholder">
                     {% assign collection_handle = collection.handle | downcase %}
                     {% if collection_handle contains 'magic' %}
                       <span class="placeholder-icon">🌟</span>
+                      <span class="placeholder-text">Magic: The Gathering</span>
                     {% elsif collection_handle contains 'pokemon' %}
                       <span class="placeholder-icon">⚡</span>
+                      <span class="placeholder-text">Pokémon</span>
                     {% elsif collection_handle contains 'yugioh' %}
                       <span class="placeholder-icon">🌙</span>
+                      <span class="placeholder-text">Yu-Gi-Oh!</span>
                     {% elsif collection_handle contains 'board' %}
                       <span class="placeholder-icon">🎯</span>
+                      <span class="placeholder-text">Board Games</span>
                     {% elsif collection_handle contains 'dice' %}
                       <span class="placeholder-icon">🎲</span>
+                      <span class="placeholder-text">Dice & Accessories</span>
                     {% elsif collection_handle contains 'accessory' %}
                       <span class="placeholder-icon">🛡️</span>
+                      <span class="placeholder-text">Accessories</span>
                     {% else %}
                       <span class="placeholder-icon">📚</span>
+                      <span class="placeholder-text">Other</span>
                     {% endif %}
-                    <span class="placeholder-text">{{ collection.title }}</span>
                   </div>
                 </a>
                 <div class="collection-content">
                   <h3><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
-                  <p>{{ collection.description | strip_html | truncatewords: 15 }}</p>
+                  <p>{% if collection_handle contains 'magic' %}"Crack a pack, cast a spell, join the fun!"{% else %}{{ collection.description | strip_html | truncatewords: 15 }}{% endif %}</p>
                   <a href="{{ collection.url }}" class="btn btn-small">View Collection</a>
                 </div>
               </div>
@@ -107,5 +114,18 @@
     {% endif %}
   {% endif %}
 
-  {% comment %} Removed about section for minimalist design {% endcomment %}
+  <!-- Newsletter CTA -->
+  <section class="cta-block">
+    <div class="container">
+      <h2 class="section-title">Join the Planeswalker's List</h2>
+      <p>Get exclusive deals, event invites, and Magic news straight to your inbox. No spam, just legendary value!</p>
+      {% form 'customer', class: 'newsletter-form', id: 'newsletter-form-home' %}
+        <div class="newsletter-input-group">
+          <input type="email" name="contact[email]" placeholder="Your email" required aria-label="Email address for newsletter" class="newsletter-input">
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <button type="submit" class="btn newsletter-btn">Subscribe</button>
+        </div>
+      {% endform %}
+    </div>
+  </section>
 </div>
