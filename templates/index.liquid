@@ -3,12 +3,8 @@
   <section class="hero-section">
     <div class="container">
       <div class="hero-content">
-        <h1 class="hero-title">Welcome to {{ shop.name }}</h1>
-        <p class="hero-subtitle">{{ shop.description | default: "Your magical destination for trading card games and collectibles" }}</p>
-        <div class="hero-buttons">
-          <a href="{{ routes.collections_url }}" class="btn btn-primary">Shop Now</a>
-          <a href="{{ pages.about.url | default: '/pages/about' }}" class="btn btn-secondary">Learn More</a>
-        </div>
+        <h1 class="hero-title">Welcome to Goblin Games</h1>
+        <p class="hero-subtitle">{{ shop.description | default: "Discover our curated collection of trading cards" }}</p>
       </div>
     </div>
   </section>
@@ -111,19 +107,5 @@
     {% endif %}
   {% endif %}
 
-  <!-- About Preview -->
-  <section class="about-preview">
-    <div class="container">
-      <div class="about-content">
-        <div class="about-text">
-          <h2>About {{ shop.name }}</h2>
-          <p>Welcome to our magical realm of trading card games! We're passionate about bringing you the finest selection of cards, games, and collectibles.</p>
-          <a href="{{ pages.about.url | default: '/pages/about' }}" class="btn btn-primary">Learn Our Story</a>
-        </div>
-        <div class="about-image">
-          <div class="placeholder-image">🧙‍♂️</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {% comment %} Removed about section for minimalist design {% endcomment %}
 </div>
