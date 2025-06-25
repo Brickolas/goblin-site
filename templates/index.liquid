@@ -1,0 +1,375 @@
+{% comment %}
+  Homepage Template for Goblin Games Theme
+  This is the main landing page template
+{% endcomment %}
+
+<div class="homepage">
+  <!-- Hero Section -->
+  <section class="hero-section" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <h1 id="hero-title" class="hero-title">Welcome to {{ shop.name }}</h1>
+      <p class="hero-subtitle">{{ shop.description | default: "Your magical destination for trading card games and collectibles" }}</p>
+      <div class="hero-buttons">
+        <a href="{{ routes.collections_url }}" class="btn btn-primary">Shop Now</a>
+        <a href="{{ pages.about.url | default: '/pages/about' }}" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-particles" aria-hidden="true"></div>
+  </section>
+
+  <!-- Featured Collections -->
+  {% if collections.size > 0 %}
+    <section class="featured-collections">
+      <div class="container">
+        <h2 class="section-title">Featured Collections</h2>
+        <div class="collections-grid">
+          {% for collection in collections limit: 4 %}
+            <div class="collection-card">
+              {% if collection.featured_image %}
+                <a href="{{ collection.url }}" class="collection-image">
+                  {{ collection.featured_image | img_url: '400x400' | img_tag: collection.title }}
+                </a>
+              {% endif %}
+              <div class="collection-content">
+                <h3><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
+                <p>{{ collection.description | strip_html | truncatewords: 15 }}</p>
+                <a href="{{ collection.url }}" class="btn btn-small">View Collection</a>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- Featured Products -->
+  {% assign featured_products = collections.featured.products | default: collections.all.products %}
+  {% if featured_products.size > 0 %}
+    <section class="featured-products">
+      <div class="container">
+        <h2 class="section-title">Featured Products</h2>
+        <div class="products-grid">
+          {% for product in featured_products limit: 8 %}
+            <div class="product-card" data-product-id="{{ product.id }}">
+              {% if product.featured_image %}
+                <a href="{{ product.url }}" class="product-image">
+                  {{ product.featured_image | img_url: '300x300' | img_tag: product.title }}
+                </a>
+              {% endif %}
+              <div class="product-content">
+                <h3 class="product-title">
+                  <a href="{{ product.url }}">{{ product.title }}</a>
+                </h3>
+                <div class="product-price">
+                  {% if product.compare_at_price > product.price %}
+                    <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                  {% endif %}
+                  <span class="price">{{ product.price | money }}</span>
+                </div>
+                {% if product.available %}
+                  <button class="add-to-cart-btn shopify-add-to-cart" data-variant-id="{{ product.selected_or_first_available_variant.id }}">
+                    Add to Cart
+                  </button>
+                {% else %}
+                  <button class="sold-out-btn" disabled>Sold Out</button>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- About Section -->
+  <section class="about-preview">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>About {{ shop.name }}</h2>
+          <p>{{ shop.description | default: "Welcome to our magical realm of trading card games! We're passionate about bringing you the finest selection of cards, games, and collectibles from across the multiverse." }}</p>
+          <a href="{{ pages.about.url | default: '/pages/about' }}" class="btn btn-primary">Learn Our Story</a>
+        </div>
+        <div class="about-image">
+          {% if settings.about_founder_image %}
+            {{ settings.about_founder_image | img_url: '500x500' | img_tag: 'About us' }}
+          {% else %}
+            <div class="placeholder-image">🧙‍♂️</div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<style>
+  .homepage {
+    min-height: 100vh;
+  }
+
+  .hero-section {
+    background: linear-gradient(135deg, var(--goblin-green, #2d5016) 0%, var(--forest-green, #228b22) 100%);
+    color: white;
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--goblin-gold, #d4af37);
+    color: var(--goblin-green, #2d5016);
+  }
+
+  .btn-primary:hover {
+    background: #f4d03f;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border-color: white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--goblin-green, #2d5016);
+  }
+
+  .btn-small {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--goblin-green, #2d5016);
+  }
+
+  .featured-collections,
+  .featured-products,
+  .about-preview {
+    padding: 4rem 0;
+  }
+
+  .collections-grid,
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .collection-card,
+  .product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-card:hover,
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .collection-image,
+  .product-image {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  .collection-image img,
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-image:hover img,
+  .product-image:hover img {
+    transform: scale(1.05);
+  }
+
+  .collection-content,
+  .product-content {
+    padding: 1.5rem;
+  }
+
+  .collection-content h3,
+  .product-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .collection-content h3 a,
+  .product-title a {
+    color: var(--goblin-green, #2d5016);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .product-price {
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .price {
+    color: var(--goblin-green, #2d5016);
+    font-size: 1.1rem;
+  }
+
+  .price-compare {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 0.5rem;
+  }
+
+  .add-to-cart-btn,
+  .sold-out-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .add-to-cart-btn {
+    background: var(--goblin-green, #2d5016);
+    color: white;
+  }
+
+  .add-to-cart-btn:hover {
+    background: var(--forest-green, #228b22);
+    transform: translateY(-2px);
+  }
+
+  .sold-out-btn {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+
+  .about-preview {
+    background: var(--parchment, #f4f1e8);
+  }
+
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .about-text h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--goblin-green, #2d5016);
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+
+  .about-text p {
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: var(--text-secondary, #5d6d7e);
+  }
+
+  .about-image {
+    text-align: center;
+  }
+
+  .about-image img {
+    border-radius: 15px;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .placeholder-image {
+    font-size: 8rem;
+    padding: 2rem;
+    background: var(--goblin-gold, #d4af37);
+    border-radius: 15px;
+    display: inline-block;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    .collections-grid,
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .about-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+</style>

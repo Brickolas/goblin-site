@@ -1,0 +1,488 @@
+{% comment %}
+  Collection Template for Goblin Games Theme
+  Displays products in a collection with filtering
+{% endcomment %}
+
+<div class="collection-page">
+  <div class="container">
+    <!-- Collection Header -->
+    <div class="collection-header">
+      <h1 class="collection-title">{{ collection.title }}</h1>
+      {% if collection.description != blank %}
+        <div class="collection-description">
+          {{ collection.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    <!-- Filter and Sort -->
+    <div class="collection-toolbar">
+      <div class="collection-filters">
+        <button class="filter-btn active" data-filter="all">All Products</button>
+        {% for tag in collection.all_tags %}
+          <button class="filter-btn" data-filter="{{ tag | handle }}">{{ tag }}</button>
+        {% endfor %}
+      </div>
+      
+      <div class="collection-sort">
+        <select class="sort-select" onchange="location = this.value;">
+          <option value="{{ collection.url }}?sort_by=manual">Featured</option>
+          <option value="{{ collection.url }}?sort_by=best-selling" {% if collection.sort_by == 'best-selling' %}selected{% endif %}>Best Selling</option>
+          <option value="{{ collection.url }}?sort_by=title-ascending" {% if collection.sort_by == 'title-ascending' %}selected{% endif %}>A-Z</option>
+          <option value="{{ collection.url }}?sort_by=title-descending" {% if collection.sort_by == 'title-descending' %}selected{% endif %}>Z-A</option>
+          <option value="{{ collection.url }}?sort_by=price-ascending" {% if collection.sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
+          <option value="{{ collection.url }}?sort_by=price-descending" {% if collection.sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
+          <option value="{{ collection.url }}?sort_by=created-descending" {% if collection.sort_by == 'created-descending' %}selected{% endif %}>Newest</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    {% if collection.products.size > 0 %}
+      <div class="products-grid">
+        {% for product in collection.products %}
+          <div class="product-card" data-product-id="{{ product.id }}" data-tags="{{ product.tags | join: ' ' | handle }}">
+            {% if product.featured_image %}
+              <a href="{{ product.url }}" class="product-image">
+                {{ product.featured_image | img_url: '400x400' | img_tag: product.title, 'lazy' }}
+                {% if product.images.size > 1 %}
+                  <div class="product-image-hover">
+                    {{ product.images[1] | img_url: '400x400' | img_tag: product.title }}
+                  </div>
+                {% endif %}
+              </a>
+            {% endif %}
+            
+            <div class="product-content">
+              {% if product.vendor %}
+                <div class="product-vendor">{{ product.vendor }}</div>
+              {% endif %}
+              
+              <h3 class="product-title">
+                <a href="{{ product.url }}">{{ product.title }}</a>
+              </h3>
+              
+              {% if product.description %}
+                <p class="product-description">{{ product.description | strip_html | truncatewords: 15 }}</p>
+              {% endif %}
+              
+              <div class="product-price">
+                {% if product.compare_at_price > product.price %}
+                  <span class="price-compare">{{ product.compare_at_price | money }}</span>
+                {% endif %}
+                <span class="price">{{ product.price | money }}</span>
+              </div>
+              
+              {% if product.available %}
+                <form action="/cart/add" method="post" enctype="multipart/form-data" class="add-to-cart-form">
+                  {% unless product.has_only_default_variant %}
+                    <div class="product-variants">
+                      <select name="id" class="variant-select">
+                        {% for variant in product.variants %}
+                          <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                            {{ variant.title }}
+                            {% unless variant.available %} - Sold Out{% endunless %}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  {% else %}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  {% endunless %}
+                  
+                  <button type="submit" class="add-to-cart-btn">
+                    Add to Cart
+                  </button>
+                </form>
+              {% else %}
+                <button class="sold-out-btn" disabled>Sold Out</button>
+              {% endif %}
+              
+              <button class="add-to-wishlist-btn" data-product-id="{{ product.id }}">
+                ❤️ Add to Wishlist
+              </button>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if paginate.pages > 1 %}
+        <nav class="pagination" aria-label="Collection pagination">
+          {% if paginate.previous %}
+            <a href="{{ paginate.previous.url }}" class="pagination-link pagination-prev">
+              ← Previous
+            </a>
+          {% endif %}
+
+          {% for part in paginate.parts %}
+            {% if part.is_link %}
+              <a href="{{ part.url }}" class="pagination-link">{{ part.title }}</a>
+            {% else %}
+              {% if part.title == paginate.current_page %}
+                <span class="pagination-link pagination-current">{{ part.title }}</span>
+              {% else %}
+                <span class="pagination-link pagination-gap">{{ part.title }}</span>
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+
+          {% if paginate.next %}
+            <a href="{{ paginate.next.url }}" class="pagination-link pagination-next">
+              Next →
+            </a>
+          {% endif %}
+        </nav>
+      {% endif %}
+    {% else %}
+      <div class="empty-collection">
+        <h2>No products found</h2>
+        <p>This collection is currently empty. Check back soon for new arrivals!</p>
+        <a href="{{ routes.collections_url }}" class="btn btn-primary">Browse All Collections</a>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+  .collection-page {
+    padding: 2rem 0 4rem;
+  }
+
+  .collection-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .collection-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--goblin-green, #2d5016);
+    margin-bottom: 1rem;
+  }
+
+  .collection-description {
+    max-width: 600px;
+    margin: 0 auto;
+    color: var(--text-secondary, #5d6d7e);
+    line-height: 1.6;
+  }
+
+  .collection-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+    padding: 1rem;
+    background: var(--parchment, #f4f1e8);
+    border-radius: 10px;
+  }
+
+  .collection-filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--goblin-green, #2d5016);
+    background: white;
+    color: var(--goblin-green, #2d5016);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+  }
+
+  .filter-btn:hover,
+  .filter-btn.active {
+    background: var(--goblin-green, #2d5016);
+    color: white;
+  }
+
+  .sort-select {
+    padding: 0.5rem 1rem;
+    border: 2px solid var(--goblin-green, #2d5016);
+    border-radius: 5px;
+    background: white;
+    color: var(--goblin-green, #2d5016);
+    cursor: pointer;
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .product-card {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    position: relative;
+  }
+
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .product-image {
+    display: block;
+    aspect-ratio: 1;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+
+  .product-image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .product-image-hover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .product-image:hover .product-image-hover {
+    opacity: 1;
+  }
+
+  .product-content {
+    padding: 1.5rem;
+  }
+
+  .product-vendor {
+    font-size: 0.8rem;
+    color: var(--goblin-gold, #d4af37);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title {
+    margin-bottom: 0.5rem;
+  }
+
+  .product-title a {
+    color: var(--goblin-green, #2d5016);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+
+  .product-description {
+    color: var(--text-secondary, #5d6d7e);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  .product-price {
+    margin-bottom: 1rem;
+    font-weight: 600;
+  }
+
+  .price {
+    color: var(--goblin-green, #2d5016);
+    font-size: 1.2rem;
+  }
+
+  .price-compare {
+    color: #999;
+    text-decoration: line-through;
+    margin-right: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .product-variants {
+    margin-bottom: 1rem;
+  }
+
+  .variant-select {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    background: white;
+  }
+
+  .add-to-cart-btn,
+  .sold-out-btn,
+  .add-to-wishlist-btn {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+  }
+
+  .add-to-cart-btn {
+    background: var(--goblin-green, #2d5016);
+    color: white;
+  }
+
+  .add-to-cart-btn:hover {
+    background: var(--forest-green, #228b22);
+    transform: translateY(-2px);
+  }
+
+  .sold-out-btn {
+    background: #ccc;
+    color: #666;
+    cursor: not-allowed;
+  }
+
+  .add-to-wishlist-btn {
+    background: var(--goblin-gold, #d4af37);
+    color: var(--goblin-green, #2d5016);
+    font-size: 0.9rem;
+  }
+
+  .add-to-wishlist-btn:hover {
+    background: #f4d03f;
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+  }
+
+  .pagination-link {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--goblin-green, #2d5016);
+    color: var(--goblin-green, #2d5016);
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .pagination-link:hover,
+  .pagination-current {
+    background: var(--goblin-green, #2d5016);
+    color: white;
+  }
+
+  .pagination-gap {
+    border-color: #ddd;
+    color: #999;
+  }
+
+  .empty-collection {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .empty-collection h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--goblin-green, #2d5016);
+    margin-bottom: 1rem;
+  }
+
+  .empty-collection p {
+    color: var(--text-secondary, #5d6d7e);
+    margin-bottom: 2rem;
+  }
+
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .collection-title {
+      font-size: 2rem;
+    }
+
+    .collection-toolbar {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .collection-filters {
+      justify-content: center;
+    }
+
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .pagination {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const productCards = document.querySelectorAll('.product-card');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const filter = this.dataset.filter;
+        
+        // Update active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Filter products
+        productCards.forEach(card => {
+          const tags = card.dataset.tags || '';
+          if (filter === 'all' || tags.includes(filter)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Add to cart form handling
+    const addToCartForms = document.querySelectorAll('.add-to-cart-form');
+    addToCartForms.forEach(form => {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        
+        fetch('/cart/add.js', {
+          method: 'POST',
+          body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Update cart counter and show success message
+          if (window.goblinGames) {
+            window.goblinGames.updateShopifyCartCounter();
+            window.goblinGames.showNotification('Added to cart!', 'success');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          if (window.goblinGames) {
+            window.goblinGames.showNotification('Error adding to cart', 'error');
+          }
+        });
+      });
+    });
+  });
+</script>

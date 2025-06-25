@@ -1,0 +1,48 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "404": {
+      "title": "Page not found",
+      "subtext": "The page you are looking for cannot be found."
+    },
+    "accessibility": {
+      "skip_to_text": "Skip to content",
+      "close": "Close",
+      "back": "Back",
+      "loading": "Loading..."
+    },
+    "share": {
+      "success_message": "Link copied to clipboard"
+    }
+  },
+  "sections": {
+    "cart": {
+      "cart_error": "Something went wrong updating your cart. Please try again.",
+      "cart_quantity_error_html": "You can only add [quantity] of this item to your cart."
+    },
+    "slideshow": {
+      "pause_slideshow": "Pause slideshow",
+      "play_slideshow": "Play slideshow"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "unavailable": "Unavailable",
+      "value_unavailable": "{{ option_value }} - Unavailable",
+      "media": {
+        "image_available": "Image {{ index }} is now available in gallery view"
+      }
+    }
+  },
+  "accessibility": {
+    "refresh_page": "Choosing a selection results in a full page refresh.",
+    "link_messages": {
+      "new_window": "Opens in a new window."
+    }
+  }
+}

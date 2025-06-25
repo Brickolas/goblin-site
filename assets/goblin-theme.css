@@ -1,0 +1,140 @@
+/* Goblin Games Theme CSS */
+
+:root {
+  --goblin-green: #2d5016;
+  --goblin-gold: #d4af37;
+  --goblin-brown: #8b4513;
+  --forest-green: #228b22;
+  --earth-brown: #8b7355;
+  --parchment: #f4f1e8;
+  --shadow-dark: rgba(0, 0, 0, 0.3);
+  --text-primary: #2c3e50;
+  --text-secondary: #5d6d7e;
+}
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Libre Baskerville', serif;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(135deg, var(--parchment) 0%, #e8dcc0 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cinzel', serif;
+  color: var(--goblin-green);
+  margin-bottom: 1rem;
+}
+
+.btn {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-primary {
+  background: var(--goblin-green);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--forest-green);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--goblin-gold);
+  color: var(--goblin-green);
+}
+
+.btn-secondary:hover {
+  background: #f4d03f;
+  transform: translateY(-2px);
+}
+
+/* Utility Classes */
+.visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}
+
+.focus-none {
+  outline: none;
+}
+
+.focus-none:focus {
+  outline: 2px solid var(--goblin-gold);
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fadeInUp 0.6s ease;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 15px;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Skip to content link */
+.skip-to-content-link {
+  position: absolute;
+  z-index: 9999;
+  top: -40px;
+  left: 6px;
+  background: var(--goblin-green);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  transition: top 0.3s;
+}
+
+.skip-to-content-link:focus {
+  top: 6px;
+}
