@@ -1,10 +1,22 @@
 {% comment %}
-  Header Section for Goblin Games Theme
-  Includes navigation, cart, and search functionality
+  Interactive Goblin Hut Navigation
+  Final Fantasy 7 inspired UI with cozy hut atmosphere
 {% endcomment %}
 
-<header class="header" role="banner">
-  <nav class="nav-container" role="navigation" aria-label="Main navigation">
+<!-- Hut Interior Overlay -->
+<div class="hut-overlay">
+  <div class="hut-beam hut-beam-1"></div>
+  <div class="hut-beam hut-beam-2"></div>
+  <div class="hut-beam hut-beam-3"></div>
+  <div class="fireplace-glow"></div>
+  <div class="hanging-items">
+    <div class="lantern lantern-1">🏮</div>
+    <div class="lantern lantern-2">🕯️</div>
+  </div>
+</div>
+
+<header class="hut-header" role="banner">
+  <nav class="hut-nav-system" role="navigation" aria-label="Goblin Hut Navigation">
     <div class="logo-container">
       <a href="{{ routes.root_url }}" class="logo-link" aria-label="{{ shop.name }} Homepage">
         {% assign logo_size = settings.logo_width | default: 50 %}
@@ -23,56 +35,77 @@
       <span></span>
     </button>
     
-    <ul class="nav-menu" role="menubar">
-      <li role="none">
-        <a href="{{ routes.root_url }}" role="menuitem" {% if request.page_type == 'index' %}aria-current="page"{% endif %}>
-          Home
+    <!-- Interactive Hut Objects as Navigation -->
+    <div class="hut-objects" role="menubar">
+      <div class="hut-object bookshelf" role="none">
+        <a href="{{ routes.root_url }}" role="menuitem" {% if request.page_type == 'index' %}aria-current="page"{% endif %} class="object-link">
+          <div class="object-icon">📚</div>
+          <div class="object-label">Entrance</div>
+          <div class="object-glow"></div>
         </a>
-      </li>
-      <li role="none">
-        <a href="{{ routes.collections_url }}" role="menuitem" {% if request.page_type == 'collection' or request.page_type == 'product' %}aria-current="page"{% endif %}>
-          Products
-        </a>
-      </li>
-      <li role="none">
-        <a href="{{ pages.about.url | default: '/pages/about' }}" role="menuitem" {% if page.handle == 'about' %}aria-current="page"{% endif %}>
-          About
-        </a>
-      </li>
-      <li role="none">
-        <a href="{{ blogs.news.url | default: '/blogs/news' }}" role="menuitem" {% if request.page_type == 'blog' or request.page_type == 'article' %}aria-current="page"{% endif %}>
-          News
-        </a>
-      </li>
-      <li role="none">
-        <a href="{{ pages.contact.url | default: '/pages/contact' }}" role="menuitem" {% if page.handle == 'contact' %}aria-current="page"{% endif %}>
-          Contact
-        </a>
-      </li>
+      </div>
       
-      {% comment %} Search Icon {% endcomment %}
-      <li role="none" class="nav-search">
-        <button class="search-toggle" aria-label="Open search" aria-expanded="false">
-          🔍
+      <div class="hut-object treasure-chest" role="none">
+        <a href="{{ routes.collections_url }}" role="menuitem" {% if request.page_type == 'collection' or request.page_type == 'product' %}aria-current="page"{% endif %} class="object-link">
+          <div class="object-icon">📦</div>
+          <div class="object-label">Treasure</div>
+          <div class="object-glow"></div>
+        </a>
+      </div>
+      
+      <div class="hut-object scroll-desk" role="none">
+        <a href="{{ pages.about.url | default: '/pages/about' }}" role="menuitem" {% if page.handle == 'about' %}aria-current="page"{% endif %} class="object-link">
+          <div class="object-icon">📜</div>
+          <div class="object-label">Tales</div>
+          <div class="object-glow"></div>
+        </a>
+      </div>
+      
+      <div class="hut-object crystal-ball" role="none">
+        <a href="{{ blogs.news.url | default: '/blogs/news' }}" role="menuitem" {% if request.page_type == 'blog' or request.page_type == 'article' %}aria-current="page"{% endif %} class="object-link">
+          <div class="object-icon">🔮</div>
+          <div class="object-label">Visions</div>
+          <div class="object-glow"></div>
+        </a>
+      </div>
+      
+      <div class="hut-object message-bowl" role="none">
+        <a href="{{ pages.contact.url | default: '/pages/contact' }}" role="menuitem" {% if page.handle == 'contact' %}aria-current="page"{% endif %} class="object-link">
+          <div class="object-icon">🥣</div>
+          <div class="object-label">Messages</div>
+          <div class="object-glow"></div>
+        </a>
+      </div>
+      
+      {% comment %} Search Cauldron {% endcomment %}
+      <div class="hut-object search-cauldron" role="none">
+        <button class="object-link search-toggle" aria-label="Open search cauldron" aria-expanded="false">
+          <div class="object-icon">🔮</div>
+          <div class="object-label">Search</div>
+          <div class="object-glow"></div>
         </button>
-      </li>
+      </div>
       
-      {% comment %} Wishlist Icon {% endcomment %}
-      <li role="none">
-        <a href="{{ pages.wishlist.url | default: '/pages/wishlist' }}" class="wishlist-link" role="menuitem" aria-label="Wishlist">
-          <span class="wishlist-icon">❤️</span>
-          <span class="wishlist-counter" aria-live="polite">0</span>
+      {% comment %} Wishlist Potion Shelf {% endcomment %}
+      <div class="hut-object potion-shelf" role="none">
+        <a href="{{ pages.wishlist.url | default: '/pages/wishlist' }}" class="object-link" role="menuitem" aria-label="Wishlist">
+          <div class="object-icon">💖</div>
+          <div class="object-label">Favorites</div>
+          <div class="object-glow"></div>
+          <span class="object-counter wishlist-counter" aria-live="polite">0</span>
         </a>
-      </li>
+      </div>
       
-      {% comment %} Cart Icon {% endcomment %}
-      <li role="none">
-        <a href="{{ routes.cart_url }}" class="cart-link" role="menuitem" aria-label="Shopping cart" data-cart-drawer-toggle>
-          <span class="cart-icon">🛒</span>
-          <span class="cart-counter" aria-live="polite">{{ cart.item_count }}</span>
+      {% comment %} Cart Satchel {% endcomment %}
+      <div class="hut-object cart-satchel" role="none">
+        <a href="{{ routes.cart_url }}" class="object-link" role="menuitem" aria-label="Shopping satchel" data-cart-drawer-toggle>
+          <div class="object-icon">🎒</div>
+          <div class="object-label">Satchel</div>
+          <div class="object-glow"></div>
+          <span class="object-counter cart-counter" aria-live="polite">{{ cart.item_count }}</span>
         </a>
-      </li>
-    </ul>
+      </div>
+    </div>
   </nav>
   
   {% comment %} Search Dropdown {% endcomment %}
@@ -101,22 +134,237 @@
 </header>
 
 <style>
-  .header {
-    background: var(--goblin-green, #2d5016);
+  /* Hut Interior Overlay */
+  .hut-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .hut-beam {
+    position: absolute;
+    background: linear-gradient(45deg, var(--hut-wood), var(--warm-bronze));
+    box-shadow: 0 0 20px var(--shadow-deep);
+  }
+
+  .hut-beam-1 {
+    top: 0;
+    left: 20%;
+    width: 8px;
+    height: 100vh;
+    transform: rotate(2deg);
+  }
+
+  .hut-beam-2 {
+    top: 0;
+    right: 25%;
+    width: 12px;
+    height: 100vh;
+    transform: rotate(-1deg);
+  }
+
+  .hut-beam-3 {
+    top: 0;
+    left: 75%;
+    width: 6px;
+    height: 100vh;
+    transform: rotate(1.5deg);
+  }
+
+  .fireplace-glow {
+    position: absolute;
+    bottom: 10%;
+    left: 5%;
+    width: 200px;
+    height: 150px;
+    background: radial-gradient(ellipse, var(--firelight) 0%, var(--candleflame) 30%, transparent 70%);
+    border-radius: 50%;
+    animation: fireplace-flicker 3s ease-in-out infinite alternate;
+  }
+
+  @keyframes fireplace-flicker {
+    0% { opacity: 0.7; transform: scale(1); }
+    100% { opacity: 0.9; transform: scale(1.1); }
+  }
+
+  .hanging-items {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+  }
+
+  .lantern {
+    position: absolute;
+    font-size: 2rem;
+    animation: sway 4s ease-in-out infinite;
+  }
+
+  .lantern-1 {
+    left: 30%;
+    animation-delay: 0s;
+  }
+
+  .lantern-2 {
+    right: 20%;
+    animation-delay: 2s;
+  }
+
+  @keyframes sway {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    50% { transform: translateX(10px) rotate(2deg); }
+  }
+
+  /* Hut Header Styles */
+  .hut-header {
+    background: 
+      linear-gradient(180deg, var(--ui-panel) 0%, rgba(20, 40, 80, 0.7) 100%);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--ui-border);
+    border-radius: 0 0 15px 15px;
     padding: 1rem 0;
-    box-shadow: 0 4px 15px var(--shadow-dark, rgba(0, 0, 0, 0.3));
     position: sticky;
     top: 0;
     z-index: 1000;
+    box-shadow: 
+      0 4px 20px var(--shadow-deep),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
-  .nav-container {
+  .hut-nav-system {
     display: flex;
     justify-content: space-between;
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
+  }
+
+  /* Interactive Hut Objects */
+  .hut-objects {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .hut-object {
+    position: relative;
+    perspective: 1000px;
+  }
+
+  .object-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    text-decoration: none;
+    color: var(--ui-text);
+    background: 
+      linear-gradient(145deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+    border: 2px solid var(--ui-border);
+    border-radius: 12px;
+    transition: var(--transition-smooth);
+    min-width: 80px;
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .object-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .object-link:hover::before {
+    left: 100%;
+  }
+
+  .object-link:hover {
+    transform: translateY(-5px) rotateX(5deg);
+    box-shadow: 
+      0 10px 25px var(--shadow-deep),
+      0 0 30px var(--ui-accent);
+    border-color: var(--ui-accent);
+    background: 
+      linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1));
+  }
+
+  .object-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 0 10px var(--ui-accent));
+    transition: var(--transition-smooth);
+  }
+
+  .object-link:hover .object-icon {
+    transform: scale(1.2) rotateY(10deg);
+    filter: drop-shadow(0 0 20px var(--ui-accent));
+  }
+
+  .object-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px var(--ui-accent);
+  }
+
+  .object-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, var(--ui-accent) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: var(--transition-smooth);
+    z-index: -1;
+  }
+
+  .object-link:hover .object-glow,
+  .object-link[aria-current="page"] .object-glow {
+    opacity: 0.3;
+  }
+
+  .object-counter {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: var(--goblin-red);
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    border: 2px solid var(--ui-accent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+
+  .object-counter:not(:empty) {
+    display: flex;
   }
 
   .logo-container {
@@ -186,7 +434,7 @@
     top: -5px;
     right: -5px;
     background: var(--goblin-gold, #d4af37);
-    color: var(--goblin-green, #2d5016);
+    color: var(--goblin-bronze, #2d5016);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -262,12 +510,12 @@
   }
 
   .search-input:focus {
-    border-color: var(--goblin-green, #2d5016);
+    border-color: var(--goblin-bronze, #2d5016);
     box-shadow: 0 0 10px rgba(45, 80, 22, 0.2);
   }
 
   .search-submit {
-    background: var(--goblin-green, #2d5016);
+    background: var(--goblin-bronze, #2d5016);
     color: white;
     border: none;
     padding: 1rem 1.5rem;
@@ -295,7 +543,7 @@
       top: 100%;
       left: 0;
       right: 0;
-      background: var(--goblin-green, #2d5016);
+      background: var(--goblin-bronze, #2d5016);
       flex-direction: column;
       padding: 1rem;
       gap: 0.5rem;

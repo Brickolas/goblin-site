@@ -1,18 +1,30 @@
-/* Goblin Games Theme CSS - Enhanced & Responsive */
+/* Goblin Hut Interactive Theme - Final Fantasy Inspired */
 
 :root {
-  --goblin-green: #2d5016;
+  /* Cozy Hut Color Palette */
+  --hut-wood: #8B4513;
+  --warm-bronze: #B87333;
   --goblin-red: #8B2635;
-  --goblin-gold: #d4af37;
-  --goblin-brown: #8b4513;
-  --forest-green: #228b22;
+  --ancient-gold: #d4af37;
+  --stone-grey: #6B5B73;
   --earth-brown: #8b7355;
   --parchment: #f4f1e8;
-  --shadow-dark: rgba(0, 0, 0, 0.3);
-  --text-primary: #2c3e50;
-  --text-secondary: #5d6d7e;
-  --border-radius: 12px;
-  --transition: all 0.3s ease;
+  --firelight: #FF6B35;
+  --candleflame: #FFB347;
+  --shadow-deep: rgba(0, 0, 0, 0.6);
+  --text-primary: #3D2914;
+  --text-secondary: #8B7355;
+  
+  /* FF7 Inspired UI Colors */
+  --ui-panel: rgba(20, 40, 80, 0.9);
+  --ui-border: #4A9;
+  --ui-text: #FFF;
+  --ui-accent: #0CF;
+  
+  /* Interactive Properties */
+  --border-radius: 8px;
+  --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Base Styles */
@@ -26,9 +38,28 @@ body {
   font-family: 'Griffy', serif;
   line-height: 1.7;
   color: var(--text-primary);
-  background: linear-gradient(135deg, var(--parchment) 0%, #e8dcc0 100%);
   min-height: 100vh;
   font-size: 1.1rem;
+  overflow-x: hidden;
+  
+  /* Cozy Hut Interior Background */
+  background: 
+    /* Firelight glow */
+    radial-gradient(circle at 15% 80%, var(--firelight) 0%, transparent 25%),
+    radial-gradient(circle at 85% 70%, var(--candleflame) 0%, transparent 20%),
+    /* Wood grain texture simulation */
+    linear-gradient(90deg, var(--hut-wood) 0%, var(--warm-bronze) 25%, var(--hut-wood) 50%, var(--earth-brown) 75%, var(--hut-wood) 100%),
+    /* Base warm interior color */
+    linear-gradient(135deg, #2D1810 0%, #4A2F1A 50%, #3D2914 100%);
+  
+  background-size: 100% 100%, 100% 100%, 200px 100%, 100% 100%;
+  background-attachment: fixed, fixed, scroll, fixed;
+  animation: subtle-flicker 4s ease-in-out infinite alternate;
+}
+
+@keyframes subtle-flicker {
+  0% { filter: brightness(1) contrast(1.1); }
+  100% { filter: brightness(1.05) contrast(1.15); }
 }
 
 .container {
@@ -40,7 +71,7 @@ body {
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cinzel', serif;
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
 }
@@ -93,14 +124,14 @@ p {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--goblin-green), var(--forest-green));
+  background: linear-gradient(135deg, var(--goblin-bronze), var(--warm-stone));
   color: white;
   border-color: var(--goblin-gold);
   box-shadow: 0 4px 15px rgba(45, 80, 22, 0.3);
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--forest-green), var(--goblin-green));
+  background: linear-gradient(135deg, var(--warm-stone), var(--goblin-bronze));
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(45, 80, 22, 0.4);
 }
@@ -129,7 +160,7 @@ p {
 }
 
 .hero-section {
-  background: linear-gradient(135deg, var(--goblin-green) 0%, var(--goblin-red) 50%, var(--forest-green) 100%);
+  background: linear-gradient(135deg, var(--goblin-bronze) 0%, var(--goblin-red) 50%, var(--warm-stone) 100%);
   color: white;
   padding: 10rem 2rem 6rem;
   text-align: center;
@@ -195,7 +226,7 @@ p {
   font-size: 3.2rem;
   text-align: center;
   margin-bottom: 4rem;
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   position: relative;
   font-weight: 600;
 }
@@ -295,7 +326,7 @@ p {
 
 .product-title a,
 .collection-content h3 a {
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   text-decoration: none;
   font-weight: 600;
   transition: color 0.3s ease;
@@ -313,7 +344,7 @@ p {
 }
 
 .price {
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   font-size: 1.3rem;
   font-weight: bold;
 }
@@ -361,7 +392,7 @@ p {
 .about-preview {
   background: linear-gradient(135deg, var(--parchment) 0%, #f0e8d0 100%);
   border-top: 4px solid var(--goblin-red);
-  border-bottom: 4px solid var(--goblin-green);
+  border-bottom: 4px solid var(--goblin-bronze);
 }
 
 .about-content {
@@ -373,7 +404,7 @@ p {
 
 .about-text h2 {
   font-family: 'Cinzel', serif;
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   margin-bottom: 1.5rem;
   font-size: 2.5rem;
 }
@@ -437,7 +468,7 @@ p {
 .placeholder-text {
   font-family: 'Cinzel', serif;
   font-size: 1.2rem;
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   font-weight: 600;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
   text-transform: uppercase;
@@ -508,7 +539,7 @@ p {
 .spec-label {
   font-family: 'Griffy', serif;
   font-size: 0.9rem;
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   font-weight: 600;
   text-align: center;
 }
@@ -517,7 +548,7 @@ p {
 
 /* Header Styles */
 .header {
-  background: linear-gradient(135deg, var(--goblin-green), var(--goblin-red));
+  background: linear-gradient(135deg, var(--goblin-bronze), var(--goblin-red));
   padding: 1.5rem 0;
   box-shadow: 0 6px 20px var(--shadow-dark);
   position: sticky;
@@ -598,7 +629,7 @@ p {
   top: -8px;
   right: -8px;
   background: var(--goblin-gold);
-  color: var(--goblin-green);
+  color: var(--goblin-bronze);
   border-radius: 50%;
   width: 24px;
   height: 24px;
@@ -633,7 +664,7 @@ p {
 
 /* Footer Styles */
 .footer {
-  background: linear-gradient(135deg, var(--goblin-green), var(--goblin-red));
+  background: linear-gradient(135deg, var(--goblin-bronze), var(--goblin-red));
   color: var(--parchment);
   padding: 5rem 0 2rem;
   margin-top: 5rem;
@@ -766,7 +797,7 @@ p {
     top: 100%;
     left: 0;
     right: 0;
-    background: linear-gradient(135deg, var(--goblin-green), var(--goblin-red));
+    background: linear-gradient(135deg, var(--goblin-bronze), var(--goblin-red));
     flex-direction: column;
     padding: 2rem;
     gap: 1rem;
