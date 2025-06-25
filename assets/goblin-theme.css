@@ -39,7 +39,7 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   color: var(--goblin-green);
   margin-bottom: 1.5rem;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -147,13 +147,13 @@ p {
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
-  animation: sparkle 3s ease-in-out infinite;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"/><circle cx="80" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.05)"/></svg>');
+  animation: subtle-float 8s ease-in-out infinite;
 }
 
-@keyframes sparkle {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+@keyframes subtle-float {
+  0%, 100% { opacity: 0.2; transform: translateY(0px); }
+  50% { opacity: 0.4; transform: translateY(-2px); }
 }
 
 .hero-content {
@@ -164,18 +164,15 @@ p {
 }
 
 .hero-title {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   font-size: 4.5rem;
   margin-bottom: 2rem;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
   color: white;
-  animation: glow 2s ease-in-out infinite alternate;
+  font-weight: 600;
 }
 
-@keyframes glow {
-  from { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.3); }
-  to { text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 30px rgba(212, 175, 55, 0.6); }
-}
+/* Removed glow animation for more subtle appearance */
 
 .hero-subtitle {
   font-size: 1.4rem;
@@ -194,12 +191,13 @@ p {
 }
 
 .section-title {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   font-size: 3.2rem;
   text-align: center;
   margin-bottom: 4rem;
   color: var(--goblin-green);
   position: relative;
+  font-weight: 600;
 }
 
 .section-title::after {
@@ -374,7 +372,7 @@ p {
 }
 
 .about-text h2 {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   color: var(--goblin-green);
   margin-bottom: 1.5rem;
   font-size: 2.5rem;
@@ -398,7 +396,11 @@ p {
   border-radius: 20px;
   display: inline-block;
   border: 4px solid var(--goblin-red);
-  animation: bounce 2s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.placeholder-image:hover {
+  transform: scale(1.05);
 }
 
 /* Product and Collection Placeholders */
@@ -433,7 +435,7 @@ p {
 }
 
 .placeholder-text {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   font-size: 1.2rem;
   color: var(--goblin-green);
   font-weight: 600;
@@ -511,11 +513,7 @@ p {
   text-align: center;
 }
 
-@keyframes bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-10px); }
-  60% { transform: translateY(-5px); }
-}
+/* Removed bounce animation for more professional appearance */
 
 /* Header Styles */
 .header {
@@ -557,7 +555,7 @@ p {
 }
 
 .logo-text {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   font-size: 2rem;
   font-weight: 400;
   color: var(--goblin-gold);
@@ -650,7 +648,7 @@ p {
 
 .footer-section h3,
 .footer-section h4 {
-  font-family: 'Creepster', serif;
+  font-family: 'Cinzel', serif;
   color: var(--goblin-gold);
   margin-bottom: 1.5rem;
   font-size: 1.4rem;
