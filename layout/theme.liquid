@@ -22,36 +22,22 @@
         <link rel="icon" type="image/png" href="{{ settings.favicon | img_url: '32x32' }}">
     {%- endif -%}
 
-    {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
-        <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-    {%- endunless -%}
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    {%- liquid
-        assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
-        assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
-        assign body_font_bold_italic = body_font_bold | font_modify: 'style', 'italic'
-    %}
+    {{ 'goblin-theme.css' | asset_url | stylesheet_tag }}
 
     {% style %}
-        {{ settings.type_body_font | font_face: font_display: 'swap' }}
-        {{ body_font_bold | font_face: font_display: 'swap' }}
-        {{ body_font_italic | font_face: font_display: 'swap' }}
-        {{ body_font_bold_italic | font_face: font_display: 'swap' }}
-        {{ settings.type_header_font | font_face: font_display: 'swap' }}
-
         :root {
-            --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
-            --font-body-style: {{ settings.type_body_font.style }};
-            --font-body-weight: {{ settings.type_body_font.weight }};
-            --font-body-weight-bold: {{ settings.type_body_font.weight | plus: 300 | at_most: 1000 }};
+            --font-body-family: 'Libre Baskerville', serif;
+            --font-body-style: normal;
+            --font-body-weight: 400;
+            --font-body-weight-bold: 700;
 
-            --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
-            --font-heading-style: {{ settings.type_header_font.style }};
-            --font-heading-weight: {{ settings.type_header_font.weight }};
+            --font-heading-family: 'Cinzel', serif;
+            --font-heading-style: normal;
+            --font-heading-weight: 600;
 
             --goblin-green: #2d5016;
             --goblin-gold: #d4af37;
@@ -72,7 +58,7 @@
 
         html {
             box-sizing: border-box;
-            font-size: calc(var(--font-body-scale) * 62.5%);
+            font-size: 62.5%;
             height: 100%;
         }
 
@@ -84,7 +70,7 @@
             margin: 0;
             font-size: 1.5rem;
             letter-spacing: 0.06rem;
-            line-height: calc(1 + 0.8 / var(--font-body-scale));
+            line-height: 1.6;
             font-family: var(--font-body-family);
             font-style: var(--font-body-style);
             font-weight: var(--font-body-weight);
@@ -114,10 +100,7 @@
         endif
     -%}
 
-    {% section 'announcement-bar' %}
     {% section 'header' %}
-    {% section 'cart-notification' %}
-    {% section 'cart-drawer' %}
 
     <main id="MainContent" class="content-for-layout focus-none" role="main" tabindex="-1">
         {{ content_for_layout }}
