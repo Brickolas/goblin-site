@@ -8,29 +8,58 @@
     <div class="product-main">
       <!-- Product Images -->
       <div class="product-images">
-        {% if product.images.size > 0 %}
-          <div class="product-gallery">
-            <div class="main-image">
-              <img src="{{ product.featured_image | img_url: '600x600' }}" alt="{{ product.title }}" id="main-product-image">
+        <div class="product-gallery">
+          <div class="main-image">
+            {% comment %} Use themed placeholder instead of inventory photos {% endcomment %}
+            <div class="product-placeholder large">
+              {% assign product_type = product.type | downcase %}
+              {% if product_type contains 'magic' or product_type contains 'mtg' %}
+                <span class="placeholder-icon">🔮</span>
+                <span class="placeholder-subtitle">Magic: The Gathering</span>
+              {% elsif product_type contains 'pokemon' or product_type contains 'pkmn' %}
+                <span class="placeholder-icon">⚡</span>
+                <span class="placeholder-subtitle">Pokémon Cards</span>
+              {% elsif product_type contains 'yugioh' or product_type contains 'yu-gi-oh' %}
+                <span class="placeholder-icon">🗡️</span>
+                <span class="placeholder-subtitle">Yu-Gi-Oh!</span>
+              {% elsif product_type contains 'dice' %}
+                <span class="placeholder-icon">🎲</span>
+                <span class="placeholder-subtitle">Gaming Dice</span>
+              {% elsif product_type contains 'board' or product_type contains 'game' %}
+                <span class="placeholder-icon">🎯</span>
+                <span class="placeholder-subtitle">Board Games</span>
+              {% elsif product_type contains 'accessory' or product_type contains 'sleeve' %}
+                <span class="placeholder-icon">🛡️</span>
+                <span class="placeholder-subtitle">Gaming Accessories</span>
+              {% else %}
+                <span class="placeholder-icon">🃏</span>
+                <span class="placeholder-subtitle">Trading Cards</span>
+              {% endif %}
+              <span class="placeholder-text">{{ product.type | default: 'Trading Cards' }}</span>
             </div>
-            {% if product.images.size > 1 %}
-              <div class="thumbnail-images">
-                {% for image in product.images %}
-                  <img 
-                    src="{{ image | img_url: '100x100' }}" 
-                    alt="{{ product.title }} - Image {{ forloop.index }}"
-                    class="thumbnail {% if forloop.first %}active{% endif %}"
-                    onclick="changeMainImage('{{ image | img_url: '600x600' }}')"
-                  >
-                {% endfor %}
+          </div>
+          {% comment %} Show product specification icons instead of thumbnails {% endcomment %}
+          <div class="product-specs">
+            <div class="spec-item">
+              <span class="spec-icon">📦</span>
+              <span class="spec-label">{{ product.type | default: 'Product' }}</span>
+            </div>
+            {% if product.vendor %}
+              <div class="spec-item">
+                <span class="spec-icon">🏢</span>
+                <span class="spec-label">{{ product.vendor }}</span>
               </div>
             {% endif %}
+            <div class="spec-item">
+              <span class="spec-icon">✨</span>
+              <span class="spec-label">Authentic</span>
+            </div>
+            <div class="spec-item">
+              <span class="spec-icon">🚚</span>
+              <span class="spec-label">Fast Shipping</span>
+            </div>
           </div>
-        {% else %}
-          <div class="no-image">
-            <span>No Image Available</span>
-          </div>
-        {% endif %}
+        </div>
       </div>
 
       <!-- Product Information -->

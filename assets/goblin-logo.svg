@@ -1,0 +1,35 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg">
+  <!-- Goblin head background circle -->
+  <circle cx="25" cy="25" r="22" fill="#2d5016" stroke="#d4af37" stroke-width="2"/>
+  
+  <!-- Goblin face -->
+  <circle cx="25" cy="25" r="18" fill="#4a7c23"/>
+  
+  <!-- Goblin ears -->
+  <ellipse cx="12" cy="20" rx="4" ry="8" fill="#4a7c23" transform="rotate(-20 12 20)"/>
+  <ellipse cx="38" cy="20" rx="4" ry="8" fill="#4a7c23" transform="rotate(20 38 20)"/>
+  
+  <!-- Goblin eyes -->
+  <circle cx="20" cy="22" r="3" fill="#fff"/>
+  <circle cx="30" cy="22" r="3" fill="#fff"/>
+  <circle cx="20" cy="22" r="1.5" fill="#8B2635"/>
+  <circle cx="30" cy="22" r="1.5" fill="#8B2635"/>
+  
+  <!-- Goblin nose -->
+  <ellipse cx="25" cy="26" rx="2" ry="3" fill="#3d6b1e"/>
+  
+  <!-- Goblin mouth -->
+  <path d="M 20 30 Q 25 34 30 30" stroke="#3d6b1e" stroke-width="2" fill="none"/>
+  
+  <!-- Goblin teeth -->
+  <polygon points="22,30 24,32 20,32" fill="#fff"/>
+  <polygon points="28,30 30,32 26,32" fill="#fff"/>
+  
+  <!-- Card game elements -->
+  <rect x="5" y="35" width="8" height="12" rx="1" fill="#d4af37" stroke="#2d5016"/>
+  <rect x="37" y="35" width="8" height="12" rx="1" fill="#d4af37" stroke="#2d5016"/>
+  
+  <!-- Card symbols -->
+  <path d="M 9 40 L 7 42 L 9 44 L 11 42 Z" fill="#8B2635"/>
+  <circle cx="41" cy="42" r="2" fill="#8B2635"/>
+</svg>

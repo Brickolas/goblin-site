@@ -401,6 +401,116 @@ p {
   animation: bounce 2s ease-in-out infinite;
 }
 
+/* Product and Collection Placeholders */
+.product-placeholder,
+.collection-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  background: linear-gradient(135deg, var(--parchment), #f0e8d0);
+  border: 3px solid var(--goblin-gold);
+  border-radius: 15px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-height: 250px;
+}
+
+.product-placeholder:hover,
+.collection-placeholder:hover {
+  background: linear-gradient(135deg, var(--goblin-gold), #f4d03f);
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(139, 38, 53, 0.2);
+}
+
+.placeholder-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  display: block;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.placeholder-text {
+  font-family: 'Creepster', serif;
+  font-size: 1.2rem;
+  color: var(--goblin-green);
+  font-weight: 600;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.product-placeholder .placeholder-text {
+  font-size: 1rem;
+}
+
+.collection-placeholder .placeholder-text {
+  font-size: 1.3rem;
+}
+
+/* Large Product Placeholder */
+.product-placeholder.large {
+  min-height: 400px;
+  padding: 3rem;
+}
+
+.product-placeholder.large .placeholder-icon {
+  font-size: 6rem;
+  margin-bottom: 1.5rem;
+}
+
+.product-placeholder.large .placeholder-subtitle {
+  font-family: 'Griffy', serif;
+  font-size: 1.1rem;
+  color: var(--goblin-red);
+  margin-bottom: 0.5rem;
+  display: block;
+  font-weight: 500;
+}
+
+.product-placeholder.large .placeholder-text {
+  font-size: 1.4rem;
+}
+
+/* Product Specifications */
+.product-specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  background: var(--parchment);
+  border: 2px solid var(--goblin-gold);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.spec-item:hover {
+  background: var(--goblin-gold);
+  transform: translateY(-3px);
+}
+
+.spec-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.spec-label {
+  font-family: 'Griffy', serif;
+  font-size: 0.9rem;
+  color: var(--goblin-green);
+  font-weight: 600;
+  text-align: center;
+}
+
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
   40% { transform: translateY(-10px); }

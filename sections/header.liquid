@@ -7,10 +7,11 @@
   <nav class="nav-container" role="navigation" aria-label="Main navigation">
     <div class="logo-container">
       <a href="{{ routes.root_url }}" class="logo-link" aria-label="{{ shop.name }} Homepage">
+        {% assign logo_size = settings.logo_width | default: 50 %}
         {% if settings.logo %}
-          {{ settings.logo | img_url: '50x50' | img_tag: shop.name, 'logo' }}
+          {{ settings.logo | img_url: logo_size | img_tag: shop.name, 'logo' }}
         {% else %}
-          <img src="{{ 'goblin-logo.svg' | asset_url }}" alt="{{ shop.name }} Logo" class="logo" width="50" height="50">
+          <img src="{{ 'goblin-logo.svg' | asset_url }}" alt="{{ shop.name }} Logo" class="logo" width="{{ logo_size }}" height="{{ logo_size }}">
         {% endif %}
         <span class="logo-text">{{ shop.name }}</span>
       </a>
@@ -132,9 +133,10 @@
   }
 
   .logo {
-    width: 50px;
-    height: 50px;
+    width: {{ settings.logo_width | default: 50 }}px;
+    height: {{ settings.logo_width | default: 50 }}px;
     border-radius: 50%;
+    object-fit: contain;
   }
 
   .logo-text {

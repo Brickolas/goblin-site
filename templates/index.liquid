@@ -21,11 +21,28 @@
         <div class="products-grid">
           {% for product in collections.featured.products limit: 8 %}
             <div class="product-card">
-              {% if product.featured_image %}
-                <a href="{{ product.url }}" class="product-image">
-                  <img src="{{ product.featured_image | img_url: '300x300' }}" alt="{{ product.title }}">
-                </a>
-              {% endif %}
+              <a href="{{ product.url }}" class="product-image">
+                {% comment %} Use themed placeholder instead of inventory photos {% endcomment %}
+                <div class="product-placeholder">
+                  {% assign product_type = product.type | downcase %}
+                  {% if product_type contains 'magic' or product_type contains 'mtg' %}
+                    <span class="placeholder-icon">🔮</span>
+                  {% elsif product_type contains 'pokemon' or product_type contains 'pkmn' %}
+                    <span class="placeholder-icon">⚡</span>
+                  {% elsif product_type contains 'yugioh' or product_type contains 'yu-gi-oh' %}
+                    <span class="placeholder-icon">🗡️</span>
+                  {% elsif product_type contains 'dice' %}
+                    <span class="placeholder-icon">🎲</span>
+                  {% elsif product_type contains 'board' or product_type contains 'game' %}
+                    <span class="placeholder-icon">🎯</span>
+                  {% elsif product_type contains 'accessory' or product_type contains 'sleeve' %}
+                    <span class="placeholder-icon">🛡️</span>
+                  {% else %}
+                    <span class="placeholder-icon">🃏</span>
+                  {% endif %}
+                  <span class="placeholder-text">{{ product.type | default: 'Trading Cards' }}</span>
+                </div>
+              </a>
               <div class="product-content">
                 <h3 class="product-title">
                   <a href="{{ product.url }}">{{ product.title }}</a>
@@ -59,11 +76,28 @@
           <div class="collections-grid">
             {% for collection in collections limit: 6 %}
               <div class="collection-card">
-                {% if collection.featured_image %}
-                  <a href="{{ collection.url }}" class="collection-image">
-                    <img src="{{ collection.featured_image | img_url: '400x400' }}" alt="{{ collection.title }}">
-                  </a>
-                {% endif %}
+                <a href="{{ collection.url }}" class="collection-image">
+                  {% comment %} Use themed placeholder for collections {% endcomment %}
+                  <div class="collection-placeholder">
+                    {% assign collection_handle = collection.handle | downcase %}
+                    {% if collection_handle contains 'magic' %}
+                      <span class="placeholder-icon">🌟</span>
+                    {% elsif collection_handle contains 'pokemon' %}
+                      <span class="placeholder-icon">⚡</span>
+                    {% elsif collection_handle contains 'yugioh' %}
+                      <span class="placeholder-icon">🌙</span>
+                    {% elsif collection_handle contains 'board' %}
+                      <span class="placeholder-icon">🎯</span>
+                    {% elsif collection_handle contains 'dice' %}
+                      <span class="placeholder-icon">🎲</span>
+                    {% elsif collection_handle contains 'accessory' %}
+                      <span class="placeholder-icon">🛡️</span>
+                    {% else %}
+                      <span class="placeholder-icon">📚</span>
+                    {% endif %}
+                    <span class="placeholder-text">{{ collection.title }}</span>
+                  </div>
+                </a>
                 <div class="collection-content">
                   <h3><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
                   <p>{{ collection.description | strip_html | truncatewords: 15 }}</p>
