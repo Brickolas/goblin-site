@@ -1,0 +1,452 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Goblin Games Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Goblin Games Team",
+    "theme_documentation_url": "https://github.com/Brickolas/shopify-site",
+    "theme_support_url": "mailto:support@goblingames.com"
+  },
+  {
+    "name": "Colors & Branding",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Goblin Games Color Palette"
+      },
+      {
+        "type": "color",
+        "id": "color_goblin_green",
+        "label": "Goblin Green (Primary)",
+        "default": "#2d5016"
+      },
+      {
+        "type": "color",
+        "id": "color_goblin_gold",
+        "label": "Goblin Gold (Accent)",
+        "default": "#d4af37"
+      },
+      {
+        "type": "color",
+        "id": "color_forest_green",
+        "label": "Forest Green (Secondary)",
+        "default": "#228b22"
+      },
+      {
+        "type": "color",
+        "id": "color_earth_brown",
+        "label": "Earth Brown",
+        "default": "#8b7355"
+      },
+      {
+        "type": "color",
+        "id": "color_parchment",
+        "label": "Parchment Background",
+        "default": "#f4f1e8"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Font Settings"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "default": "cinzel_n7",
+        "label": "Heading Font",
+        "info": "Used for page titles and section headings"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "default": "libre_baskerville_n4",
+        "label": "Body Font",
+        "info": "Used for body text and descriptions"
+      },
+      {
+        "type": "range",
+        "id": "font_body_scale",
+        "label": "Body Font Size Scale",
+        "min": 100,
+        "max": 130,
+        "step": 5,
+        "unit": "%",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Store Information",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Contact Information"
+      },
+      {
+        "type": "text",
+        "id": "contact_phone",
+        "label": "Phone Number",
+        "default": "+1 (555) GOBLIN-1"
+      },
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact Email",
+        "default": "hello@goblingames.com"
+      },
+      {
+        "type": "text",
+        "id": "support_email",
+        "label": "Support Email",
+        "default": "support@goblingames.com"
+      },
+      {
+        "type": "header",
+        "content": "Store Hours"
+      },
+      {
+        "type": "text",
+        "id": "weekday_hours",
+        "label": "Monday - Friday Hours",
+        "default": "10:00 AM - 8:00 PM"
+      },
+      {
+        "type": "text",
+        "id": "saturday_hours",
+        "label": "Saturday Hours",
+        "default": "9:00 AM - 10:00 PM"
+      },
+      {
+        "type": "text",
+        "id": "sunday_hours",
+        "label": "Sunday Hours",
+        "default": "11:00 AM - 6:00 PM"
+      },
+      {
+        "type": "textarea",
+        "id": "google_maps_embed_code",
+        "label": "Google Maps Embed Code",
+        "info": "Paste the full embed code from Google Maps"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Social Media Links"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook URL"
+      },
+      {
+        "type": "url",
+        "id": "social_twitter_link",
+        "label": "Twitter URL"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube URL"
+      },
+      {
+        "type": "url",
+        "id": "social_discord_link",
+        "label": "Discord Server URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_link",
+        "label": "TikTok URL"
+      }
+    ]
+  },
+  {
+    "name": "About Page Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Team Section"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_team_section",
+        "label": "Show Team Section",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "team_member_1_name",
+        "label": "Team Member 1 Name",
+        "default": "Grax the Goblin"
+      },
+      {
+        "type": "text",
+        "id": "team_member_1_role",
+        "label": "Team Member 1 Role",
+        "default": "Founder & Chief Mischief Officer"
+      },
+      {
+        "type": "textarea",
+        "id": "team_member_1_bio",
+        "label": "Team Member 1 Bio"
+      },
+      {
+        "type": "image_picker",
+        "id": "team_member_1_image",
+        "label": "Team Member 1 Photo"
+      },
+      {
+        "type": "text",
+        "id": "team_member_2_name",
+        "label": "Team Member 2 Name",
+        "default": "Zara"
+      },
+      {
+        "type": "text",
+        "id": "team_member_2_role",
+        "label": "Team Member 2 Role",
+        "default": "Product Curator & Tournament Organizer"
+      },
+      {
+        "type": "textarea",
+        "id": "team_member_2_bio",
+        "label": "Team Member 2 Bio"
+      },
+      {
+        "type": "image_picker",
+        "id": "team_member_2_image",
+        "label": "Team Member 2 Photo"
+      },
+      {
+        "type": "text",
+        "id": "team_member_3_name",
+        "label": "Team Member 3 Name",
+        "default": "Pip"
+      },
+      {
+        "type": "text",
+        "id": "team_member_3_role",
+        "label": "Team Member 3 Role",
+        "default": "Customer Care Specialist"
+      },
+      {
+        "type": "textarea",
+        "id": "team_member_3_bio",
+        "label": "Team Member 3 Bio"
+      },
+      {
+        "type": "image_picker",
+        "id": "team_member_3_image",
+        "label": "Team Member 3 Photo"
+      },
+      {
+        "type": "text",
+        "id": "team_member_4_name",
+        "label": "Team Member 4 Name",
+        "default": "Jinx"
+      },
+      {
+        "type": "text",
+        "id": "team_member_4_role",
+        "label": "Team Member 4 Role",
+        "default": "Inventory Manager & Rare Card Hunter"
+      },
+      {
+        "type": "textarea",
+        "id": "team_member_4_bio",
+        "label": "Team Member 4 Bio"
+      },
+      {
+        "type": "image_picker",
+        "id": "team_member_4_image",
+        "label": "Team Member 4 Photo"
+      },
+      {
+        "type": "header",
+        "content": "Statistics Section"
+      },
+      {
+        "type": "number",
+        "id": "stat_cards_in_stock",
+        "label": "Cards in Stock",
+        "default": 50000
+      },
+      {
+        "type": "number",
+        "id": "stat_happy_customers",
+        "label": "Happy Customers",
+        "default": 5000
+      },
+      {
+        "type": "number",
+        "id": "stat_tournaments_hosted",
+        "label": "Tournaments Hosted",
+        "default": 150
+      },
+      {
+        "type": "number",
+        "id": "stat_game_systems",
+        "label": "Game Systems Supported",
+        "default": 25
+      },
+      {
+        "type": "header",
+        "content": "Sustainability Section"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_sustainability_section",
+        "label": "Show Environmental Commitment Section",
+        "default": true
+      },
+      {
+        "type": "image_picker",
+        "id": "sustainability_image",
+        "label": "Sustainability Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "about_founder_image",
+        "label": "Founder Image"
+      }
+    ]
+  },
+  {
+    "name": "Search & Navigation",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Search Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "predictive_search_enabled",
+        "label": "Enable Predictive Search",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "search_unavailable_products",
+        "label": "Show Unavailable Products in Search",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "search_results_limit",
+        "label": "Maximum Search Results",
+        "min": 4,
+        "max": 12,
+        "step": 1,
+        "default": 8
+      }
+    ]
+  },
+  {
+    "name": "Cart & Checkout",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Cart Settings"
+      },
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart Type",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Drawer"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          },
+          {
+            "value": "notification",
+            "label": "Notification"
+          }
+        ],
+        "default": "drawer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cart_note",
+        "label": "Show Cart Note",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_vendor",
+        "label": "Show Product Vendor",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Performance & SEO",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Performance Settings"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_lazy_loading",
+        "label": "Enable Lazy Loading",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_animations",
+        "label": "Enable 3D Animations",
+        "default": true,
+        "info": "Disable on slower devices for better performance"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_particle_effects",
+        "label": "Enable Particle Effects",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "SEO Settings"
+      },
+      {
+        "type": "textarea",
+        "id": "meta_description",
+        "label": "Meta Description",
+        "info": "Default meta description for pages without one"
+      },
+      {
+        "type": "text",
+        "id": "meta_keywords",
+        "label": "Meta Keywords",
+        "info": "Comma-separated keywords for SEO"
+      }
+    ]
+  }
+]

@@ -1,0 +1,487 @@
+{% comment %}
+    Contact Page Template for Goblin Games
+    Converts contact.html to Shopify Liquid template
+{% endcomment %}
+
+<div class="page-contact">
+    <div class="container">
+        <h1 class="page-title">{{ page.title | default: 'Get in Touch' }}</h1>
+        <p style="text-align: center; font-size: 1.2rem; color: var(--text-secondary); margin-bottom: 2rem;">
+            {{ page.content | strip_html | default: "We'd love to hear from you! Reach out with questions, feedback, or just to say hello." }}
+        </p>
+
+        <div class="contact-container">
+            <!-- Contact Information -->
+            <div class="contact-info">
+                <h2>Visit Our Goblin Lair</h2>
+                
+                <div class="info-item">
+                    <div class="info-icon">📍</div>
+                    <div class="info-details">
+                        <h3>Store Location</h3>
+                        <p>
+                            {% if shop.address %}
+                                {{ shop.address.address1 }}<br>
+                                {{ shop.address.city }}, {{ shop.address.province }} {{ shop.address.zip }}
+                            {% else %}
+                                123 Mystical Lane<br>Enchanted City, Fantasy State 12345
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">📞</div>
+                    <div class="info-details">
+                        <h3>Phone</h3>
+                        <p><a href="tel:{{ settings.contact_phone | default: '+1-555-462-5461' }}" style="color: inherit; text-decoration: none;">{{ settings.contact_phone | default: '+1 (555) GOBLIN-1' }}</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">✉️</div>
+                    <div class="info-details">
+                        <h3>Email</h3>
+                        <p><a href="mailto:{{ settings.contact_email | default: shop.email }}" style="color: inherit; text-decoration: none;">{{ settings.contact_email | default: shop.email | default: 'hello@goblingames.com' }}</a></p>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">🌐</div>
+                    <div class="info-details">
+                        <h3>Support</h3>
+                        <p><a href="mailto:{{ settings.support_email | default: 'support@goblingames.com' }}" style="color: inherit; text-decoration: none;">{{ settings.support_email | default: 'support@goblingames.com' }}</a></p>
+                    </div>
+                </div>
+
+                <div class="hours-grid">
+                    <h3 class="hours-title">Store Hours</h3>
+                    
+                    <div class="hours-item">
+                        <span class="day">Monday - Friday</span>
+                        <span class="time">{{ settings.weekday_hours | default: '10:00 AM - 8:00 PM' }}</span>
+                    </div>
+                    
+                    <div class="hours-item">
+                        <span class="day">Saturday</span>
+                        <span class="time">{{ settings.saturday_hours | default: '9:00 AM - 10:00 PM' }}</span>
+                    </div>
+                    
+                    <div class="hours-item">
+                        <span class="day">Sunday</span>
+                        <span class="time">{{ settings.sunday_hours | default: '11:00 AM - 6:00 PM' }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="contact-form">
+                <h2>Send Us a Message</h2>
+                
+                <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+                
+                {% form 'contact' %}
+                    {% if form.posted_successfully? %}
+                        <div class="form-message success show">
+                            Thank you for your message! We'll get back to you within 24 hours.
+                        </div>
+                    {% endif %}
+
+                    {% if form.errors %}
+                        <div class="form-message error show">
+                            <ul>
+                                {% for field in form.errors %}
+                                    <li>{{ field | capitalize }} {{ form.errors.messages[field] }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="ContactFormFirstName">First Name *</label>
+                            <input type="text" id="ContactFormFirstName" name="contact[first_name]" class="form-control" required value="{% if form.first_name %}{{ form.first_name }}{% endif %}">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ContactFormLastName">Last Name *</label>
+                            <input type="text" id="ContactFormLastName" name="contact[last_name]" class="form-control" required value="{% if form.last_name %}{{ form.last_name }}{% endif %}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContactFormEmail">Email Address *</label>
+                        <input type="email" id="ContactFormEmail" name="contact[email]" class="form-control" required value="{% if form.email %}{{ form.email }}{% endif %}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContactFormPhone">Phone Number</label>
+                        <input type="tel" id="ContactFormPhone" name="contact[phone]" class="form-control" value="{% if form.phone %}{{ form.phone }}{% endif %}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContactFormSubject">Subject *</label>
+                        <select id="ContactFormSubject" name="contact[subject]" class="form-control" required>
+                            <option value="">Please select a subject</option>
+                            <option value="general" {% if form.subject == 'general' %}selected{% endif %}>General Inquiry</option>
+                            <option value="product" {% if form.subject == 'product' %}selected{% endif %}>Product Question</option>
+                            <option value="order" {% if form.subject == 'order' %}selected{% endif %}>Order Support</option>
+                            <option value="tournament" {% if form.subject == 'tournament' %}selected{% endif %}>Tournament Information</option>
+                            <option value="partnership" {% if form.subject == 'partnership' %}selected{% endif %}>Partnership Opportunity</option>
+                            <option value="feedback" {% if form.subject == 'feedback' %}selected{% endif %}>Feedback</option>
+                            <option value="other" {% if form.subject == 'other' %}selected{% endif %}>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContactFormMessage">Message *</label>
+                        <textarea id="ContactFormMessage" name="contact[body]" class="form-control" rows="5" placeholder="Tell us what's on your mind..." required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send Message 🧙‍♂️</button>
+                {% endform %}
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <div class="map-section">
+            <h2>Find Our Magical Location</h2>
+            {% if settings.google_maps_embed_code %}
+                {{ settings.google_maps_embed_code }}
+            {% else %}
+                <div class="map-placeholder">
+                    <div>
+                        <p>🗺️ Interactive Map Coming Soon!</p>
+                        <p>For now, you can find us at:<br>
+                        {% if shop.address %}
+                            {{ shop.address.address1 }}, {{ shop.address.city }}, {{ shop.address.province }} {{ shop.address.zip }}
+                        {% else %}
+                            123 Mystical Lane, Enchanted City, Fantasy State 12345
+                        {% endif %}
+                        </p>
+                        <p><small>We're located in the heart of the Fantasy District,<br>
+                        next to the Enchanted Bookstore and across from Dragon's Brew Coffee.</small></p>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="social-section">
+            <h2 class="social-title">Connect With Us Online</h2>
+            <div class="social-links">
+                {% if settings.social_facebook_link %}
+                    <a href="{{ settings.social_facebook_link }}" class="social-link" aria-label="Follow us on Facebook" target="_blank" rel="noopener">📘</a>
+                {% endif %}
+                {% if settings.social_twitter_link %}
+                    <a href="{{ settings.social_twitter_link }}" class="social-link" aria-label="Follow us on Twitter" target="_blank" rel="noopener">🐦</a>
+                {% endif %}
+                {% if settings.social_instagram_link %}
+                    <a href="{{ settings.social_instagram_link }}" class="social-link" aria-label="Follow us on Instagram" target="_blank" rel="noopener">📷</a>
+                {% endif %}
+                {% if settings.social_youtube_link %}
+                    <a href="{{ settings.social_youtube_link }}" class="social-link" aria-label="Subscribe to our YouTube channel" target="_blank" rel="noopener">📺</a>
+                {% endif %}
+                {% if settings.social_discord_link %}
+                    <a href="{{ settings.social_discord_link }}" class="social-link" aria-label="Join our Discord server" target="_blank" rel="noopener">🎮</a>
+                {% endif %}
+                {% if settings.social_tiktok_link %}
+                    <a href="{{ settings.social_tiktok_link }}" class="social-link" aria-label="Follow us on TikTok" target="_blank" rel="noopener">🎵</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    :root {
+        --goblin-green: #2d5016;
+        --goblin-gold: #d4af37;
+        --goblin-brown: #8b4513;
+        --forest-green: #228b22;
+        --earth-brown: #8b7355;
+        --parchment: #f4f1e8;
+        --shadow-dark: rgba(0, 0, 0, 0.3);
+        --text-primary: #2c3e50;
+        --text-secondary: #5d6d7e;
+    }
+
+    .page-contact .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 20px;
+    }
+
+    .page-title {
+        font-family: 'Cinzel', serif;
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        color: var(--goblin-green);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        margin-top: 3rem;
+    }
+
+    .contact-info, .contact-form {
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-info {
+        border: 2px solid var(--goblin-gold);
+    }
+
+    .contact-form {
+        border: 2px solid var(--forest-green);
+    }
+
+    .contact-info h2, .contact-form h2 {
+        font-family: 'Cinzel', serif;
+        color: var(--goblin-green);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: var(--parchment);
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+    }
+
+    .info-item:hover {
+        transform: translateX(5px);
+    }
+
+    .info-icon {
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        width: 30px;
+        text-align: center;
+    }
+
+    .info-details h3 {
+        color: var(--goblin-green);
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .info-details p {
+        color: var(--text-secondary);
+        margin: 0;
+    }
+
+    .hours-grid {
+        margin-top: 2rem;
+    }
+
+    .hours-title {
+        font-family: 'Cinzel', serif;
+        color: var(--goblin-green);
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+
+    .hours-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        background: var(--parchment);
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+        border-left: 4px solid var(--goblin-gold);
+    }
+
+    .day {
+        font-weight: 600;
+        color: var(--goblin-green);
+    }
+
+    .time {
+        color: var(--text-secondary);
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: var(--goblin-green);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        background: var(--parchment);
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: var(--goblin-gold);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, var(--goblin-green), var(--forest-green));
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(45, 80, 22, 0.3);
+    }
+
+    .map-section {
+        margin-top: 4rem;
+        background: white;
+        padding: 2.5rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        border: 2px solid var(--earth-brown);
+    }
+
+    .map-section h2 {
+        font-family: 'Cinzel', serif;
+        color: var(--goblin-green);
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+
+    .map-placeholder {
+        width: 100%;
+        height: 400px;
+        background: linear-gradient(135deg, var(--forest-green), var(--goblin-green));
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        border: 3px solid var(--goblin-gold);
+    }
+
+    .social-section {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .social-title {
+        font-family: 'Cinzel', serif;
+        color: var(--goblin-green);
+        margin-bottom: 1.5rem;
+        font-size: 1.8rem;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--goblin-gold), #f4d03f);
+        border-radius: 50%;
+        text-decoration: none;
+        font-size: 1.5rem;
+        color: var(--goblin-green);
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .social-link:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .form-message {
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        display: none;
+    }
+
+    .form-message.success {
+        background: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+        background: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+    }
+
+    .form-message.show {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        .contact-container {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+
+        .contact-info, .contact-form, .map-section {
+            padding: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .map-placeholder {
+            height: 250px;
+            font-size: 1rem;
+        }
+    }
+</style>
