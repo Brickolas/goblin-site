@@ -15,20 +15,6 @@
             <div class="contact-info">
                 <h2>Visit Our Goblin Lair</h2>
                 
-                <div class="info-item">
-                    <div class="info-icon">📍</div>
-                    <div class="info-details">
-                        <h3>Store Location</h3>
-                        <p>
-                            {% if shop.address %}
-                                {{ shop.address.address1 }}<br>
-                                {{ shop.address.city }}, {{ shop.address.province }} {{ shop.address.zip }}
-                            {% else %}
-                                123 Mystical Lane<br>Enchanted City, Fantasy State 12345
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
 
                 <div class="info-item">
                     <div class="info-icon">📞</div>
@@ -152,15 +138,10 @@
                 <div class="map-placeholder">
                     <div>
                         <p>🗺️ Interactive Map Coming Soon!</p>
-                        <p>For now, you can find us at:<br>
-                        {% if shop.address %}
-                            {{ shop.address.address1 }}, {{ shop.address.city }}, {{ shop.address.province }} {{ shop.address.zip }}
-                        {% else %}
-                            123 Mystical Lane, Enchanted City, Fantasy State 12345
-                        {% endif %}
-                        </p>
-                        <p><small>We're located in the heart of the Fantasy District,<br>
-                        next to the Enchanted Bookstore and across from Dragon's Brew Coffee.</small></p>
+                        <p>Connect with us through our digital goblin network!<br>
+                        Follow us on social media for the latest updates and magical deals.</p>
+                        <p><small>Join our online community of card game enthusiasts<br>
+                        and stay up to date with tournaments and events!</small></p>
                     </div>
                 </div>
             {% endif %}

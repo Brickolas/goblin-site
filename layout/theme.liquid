@@ -24,22 +24,23 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Griffy:wght@400&family=Nosifer&family=Butcherman&display=swap" rel="stylesheet">
 
     {{ 'goblin-theme.css' | asset_url | stylesheet_tag }}
 
     {% style %}
         :root {
-            --font-body-family: 'Libre Baskerville', serif;
+            --font-body-family: 'Griffy', serif;
             --font-body-style: normal;
             --font-body-weight: 400;
             --font-body-weight-bold: 700;
 
-            --font-heading-family: 'Cinzel', serif;
+            --font-heading-family: 'Creepster', serif;
             --font-heading-style: normal;
-            --font-heading-weight: 600;
+            --font-heading-weight: 400;
 
             --goblin-green: #2d5016;
+            --goblin-red: #8B2635;
             --goblin-gold: #d4af37;
             --goblin-brown: #8b4513;
             --forest-green: #228b22;
@@ -58,7 +59,7 @@
 
         html {
             box-sizing: border-box;
-            font-size: 62.5%;
+            font-size: 100%;
             height: 100%;
         }
 
@@ -68,8 +69,8 @@
             grid-template-columns: 100%;
             min-height: 100%;
             margin: 0;
-            font-size: 1.5rem;
-            letter-spacing: 0.06rem;
+            font-size: 1.1rem;
+            letter-spacing: 0.02rem;
             line-height: 1.6;
             font-family: var(--font-body-family);
             font-style: var(--font-body-style);
