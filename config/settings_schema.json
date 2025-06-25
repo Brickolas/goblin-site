@@ -1,1 +1,25 @@
-[]
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Goblin Games Theme",
+    "theme_version": "1.0.0",
+    "theme_author": "Goblin Games Team"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Primary Color",
+        "default": "#2d5016"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent Color",
+        "default": "#d4af37"
+      }
+    ]
+  }
+]
