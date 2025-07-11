@@ -1,155 +1,105 @@
-<!--
-<meta name="description" content="Goblin Games: Your local Magic: The Gathering shop. Shop singles, sealed, events, and join our vibrant TCG community!">
-<meta property="og:title" content="Goblin Games - Magic: The Gathering Shop & Community">
-<meta property="og:description" content="Shop Magic cards, join events, and become a legend at Goblin Games.">
-<meta property="og:image" content="/assets/og-image.jpg">
--->
-<main class="homepage">
-  <!-- Hero Section -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">Unleash Your Magic</h1>
-        <p class="hero-subtitle">Welcome to {{ shop.name }} – Your local Planeswalker's destination for Magic: The Gathering cards, events, and community. Discover legendary singles, sealed products, and accessories in a shop built by players, for players.</p>
-        <div class="hero-buttons">
-          <a href="{{ routes.collections_url }}" class="btn btn-primary">Shop Magic Cards</a>
-          <a href="{{ pages.contact.url | default: '/pages/contact' }}" class="btn btn-secondary">Contact & Events</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goblin Game Shop</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0a0a23; /* Dark blue for vaporwave goblin vibe */
+            color: #fff;
+        }
+        .hero {
+            position: relative;
+            height: 100vh;
+            background-image: url('https://example.com/path_to_your_goblin_image.jpg'); /* REPLACE with your uploaded image URL */
+            background-size: cover;
+            background-position: center;
+        }
+        .nav {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+        }
+        .nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .nav a:hover {
+            color: #00ff00; /* Goblin green glow */
+        }
+        .clickable-area {
+            position: absolute;
+            cursor: pointer;
+            z-index: 5;
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent for testing; set to transparent in production */
+            border: 1px dashed #fff; /* Dashed border for testing; remove later */
+        }
+        #table { /* Click for Shop - Position over the table in image */
+            top: 60%; /* Adjust these based on your image */
+            left: 35%;
+            width: 150px;
+            height: 120px;
+        }
+        #door { /* Click for Home - Position over the door */
+            top: 40%;
+            left: 55%;
+            width: 100px;
+            height: 200px;
+        }
+        #wardrobe { /* Click for Contact - Position over the wardrobe/shelf */
+            top: 20%;
+            left: 70%;
+            width: 120px;
+            height: 250px;
+        }
+        .content {
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(10, 10, 35, 0.8); /* Semi-transparent overlay for readability */
+        }
+        h1 {
+            color: #00ff00; /* Green for goblin theme */
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="nav">
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#contact">Contact Us</a>
         </div>
-      </div>
+        <div id="table" class="clickable-area" onclick="document.querySelector('#shop').scrollIntoView({behavior: 'smooth'});"></div>
+        <div id="door" class="clickable-area" onclick="document.querySelector('#home').scrollIntoView({behavior: 'smooth'});"></div>
+        <div id="wardrobe" class="clickable-area" onclick="document.querySelector('#contact').scrollIntoView({behavior: 'smooth'});"></div>
     </div>
-  </section>
-
-  <!-- Card of the Day Widget -->
-  <section class="about-preview card-of-day-section">
-    <div class="container">
-      <h2 class="section-title">Card of the Day</h2>
-      <div class="magic-card-frame card-of-day">
-        <div class="card-header">
-          <span class="mana-icon">{U}</span><span class="mana-icon">{R}</span>
-        </div>
-        <div class="card-art">
-          <img src="https://cards.scryfall.io/large/front/2/2/22b7e2e2-2e2e-4e2e-8e2e-2e2e2e2e2e2e.jpg" alt="Staticaster Mage Magic card art" loading="lazy" />
-        </div>
-        <div class="card-title">Staticaster Mage</div>
-        <div class="card-type">Creature — Human Wizard</div>
-        <div class="card-text">Flash, Haste<br>When Staticaster Mage enters the battlefield, it deals 1 damage to any target.<br><em>"Lightning is just another tool for a clever mage."</em></div>
-        <div class="card-flavor">Fun Fact: This card is a favorite in Izzet League decks for its surprise factor!</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About/Story Section -->
-  <section class="about-preview">
-    <div class="container about-content">
-      <div class="about-text">
-        <h2>About {{ shop.name }}</h2>
-        <p>Founded by passionate Magic players, {{ shop.name }} is more than a store – it's a gathering place for the local TCG community. Whether you're a seasoned planeswalker or just picking up your first deck, our mission is to bring the thrill of Magic to everyone. Join us for weekly events, discover rare finds, and connect with fellow fans in a welcoming, inclusive space.</p>
-        <p><strong>"There's no wrong way to play Magic – only more ways to have fun!"</strong></p>
-      </div>
-      <div class="about-image">
-        <img src="{{ 'magic-shop-hero.jpg' | asset_url }}" alt="Inside Goblin Games shop with players at tables" loading="lazy" style="max-width: 100%; border-radius: 18px; box-shadow: 0 8px 32px rgba(60,60,60,0.12);">
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Products or Collections -->
-  {% if collections.featured.products.size > 0 %}
-    <section class="featured-products">
-      <div class="container">
-        <h2 class="section-title">Featured Magic Singles & Sealed</h2>
-        <div class="products-grid">
-          {% for product in collections.featured.products limit: 8 %}
-            <div class="product-card">
-              <a href="{{ product.url }}" class="product-image">
-                <div class="product-placeholder">
-                  <span class="placeholder-icon">🔮</span>
-                  <span class="placeholder-text">{{ product.type | default: 'Magic Card' }}</span>
-                </div>
-              </a>
-              <div class="product-content">
-                <h3 class="product-title">
-                  <a href="{{ product.url }}">{{ product.title }}</a>
-                </h3>
-                <div class="product-price">
-                  {% if product.compare_at_price > product.price %}
-                    <span class="price-compare">{{ product.compare_at_price | money }}</span>
-                  {% endif %}
-                  <span class="price">{{ product.price | money }}</span>
-                </div>
-                {% if product.available %}
-                  <form action="/cart/add" method="post" class="add-to-cart-form">
-                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-                    <button type="submit" class="add-to-cart-btn">Add to Cart</button>
-                  </form>
-                {% else %}
-                  <button class="sold-out-btn" disabled>Sold Out</button>
-                {% endif %}
-              </div>
-            </div>
-          {% endfor %}
-        </div>
-      </div>
+    <section id="home" class="content">
+        <h1>Welcome to Goblin Game Shop!</h1>
+        <p>Step into our janky, colorful goblin hut for TCG battles, Warhammer skirmishes, and collectible chaos. We're scouting spots in Central NJ or Philly for your local gaming immersion—join the outmatched goblin soldiers in epic, irrational fun!</p>
     </section>
-  {% else %}
-    {% if collections.size > 0 %}
-      <section class="featured-collections">
-        <div class="container">
-          <h2 class="section-title">Shop by Category</h2>
-          <div class="collections-grid">
-            {% for collection in collections limit: 6 %}
-              <div class="collection-card">
-                <a href="{{ collection.url }}" class="collection-image">
-                  <div class="collection-placeholder">
-                    {% assign collection_handle = collection.handle | downcase %}
-                    {% if collection_handle contains 'magic' %}
-                      <span class="placeholder-icon">🌟</span>
-                      <span class="placeholder-text">Magic: The Gathering</span>
-                    {% elsif collection_handle contains 'pokemon' %}
-                      <span class="placeholder-icon">⚡</span>
-                      <span class="placeholder-text">Pokémon</span>
-                    {% elsif collection_handle contains 'yugioh' %}
-                      <span class="placeholder-icon">🌙</span>
-                      <span class="placeholder-text">Yu-Gi-Oh!</span>
-                    {% elsif collection_handle contains 'board' %}
-                      <span class="placeholder-icon">🎯</span>
-                      <span class="placeholder-text">Board Games</span>
-                    {% elsif collection_handle contains 'dice' %}
-                      <span class="placeholder-icon">🎲</span>
-                      <span class="placeholder-text">Dice & Accessories</span>
-                    {% elsif collection_handle contains 'accessory' %}
-                      <span class="placeholder-icon">🛡️</span>
-                      <span class="placeholder-text">Accessories</span>
-                    {% else %}
-                      <span class="placeholder-icon">📚</span>
-                      <span class="placeholder-text">Other</span>
-                    {% endif %}
-                  </div>
-                </a>
-                <div class="collection-content">
-                  <h3><a href="{{ collection.url }}">{{ collection.title }}</a></h3>
-                  <p>{% if collection_handle contains 'magic' %}"Crack a pack, cast a spell, join the fun!"{% else %}{{ collection.description | strip_html | truncatewords: 15 }}{% endif %}</p>
-                  <a href="{{ collection.url }}" class="btn btn-small">View Collection</a>
-                </div>
-              </div>
-            {% endfor %}
-          </div>
-        </div>
-      </section>
-    {% endif %}
-  {% endif %}
-
-  <!-- Newsletter CTA -->
-  <section class="cta-block">
-    <div class="container">
-      <h2 class="section-title">Join the Planeswalker's List</h2>
-      <p>Get exclusive deals, event invites, and Magic news straight to your inbox. No spam, just legendary value!</p>
-      {% form 'customer', class: 'newsletter-form', id: 'newsletter-form-home' %}
-        <div class="newsletter-input-group">
-          <input type="email" name="contact[email]" placeholder="Your email" required aria-label="Email address for newsletter" class="newsletter-input">
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <button type="submit" class="btn newsletter-btn">Subscribe</button>
-        </div>
-      {% endform %}
-    </div>
-  </section>
-</main>
+    <section id="shop" class="content">
+        <h1>Shop Our Goblin Hoard</h1>
+        <p>Browse Magic: The Gathering singles, Pokémon cards, Warhammer minis, and more. Out of stock? It's goblin science—painted different colors for luck! Syncing with TCGPlayer for e-commerce deals. [Embed Shopify products or TCG links here]</p>
+    </section>
+    <section id="contact" class="content">
+        <h1>Contact the Goblin Clan</h1>
+        <p>Got questions on store locations, events, or buying/selling TCGs? Email us at info@goblingameshop.com or drop by our future Philly/NJ spot for in-person trades.</p>
+    </section>
+    <script>
+        // Prevent default for better UX if needed
+        console.log('Goblin Hut Loaded - Ready for Battle!');
+    </script>
+</body>
+</html>
